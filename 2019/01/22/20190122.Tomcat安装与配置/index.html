@@ -108,7 +108,7 @@
 <meta property="og:site_name" content="Geek.Kwok Blog">
 <meta property="og:description" content="下载Tomcat   apache-tomcat-7.0.73.tar.gz1sudo wget http://learning.happymmall.com/tomcat/apache-tomcat-7.0.73.tar.gz   安装Tomcat与配置    解压缩1tar -zxvf apache-tomcat-7.0.73.tar.gz      配置环境变量12345678(1) su">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-03-01T12:03:01.682Z">
+<meta property="og:updated_time" content="2019-03-01T12:07:24.327Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Tomcat安装与配置">
 <meta name="twitter:description" content="下载Tomcat   apache-tomcat-7.0.73.tar.gz1sudo wget http://learning.happymmall.com/tomcat/apache-tomcat-7.0.73.tar.gz   安装Tomcat与配置    解压缩1tar -zxvf apache-tomcat-7.0.73.tar.gz      配置环境变量12345678(1) su">
@@ -389,7 +389,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-03-01 20:03:01" itemprop="dateModified" datetime="2019-03-01T20:03:01+08:00">2019-03-01</time>
+                <time title="修改时间：2019-03-01 20:07:24" itemprop="dateModified" datetime="2019-03-01T20:07:24+08:00">2019-03-01</time>
               
             
           </span>
@@ -469,11 +469,11 @@
 </ol>
 </blockquote>
 <ol start="3">
-<li><p>Tomcat验证</p>
+<li>Tomcat验证</li>
+</ol>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">(1) 进入tomcat安装目录，并进入bin目录</span><br><span class="line"></span><br><span class="line">(2) 执行./startup.sh</span><br><span class="line"></span><br><span class="line">(3) 看提示信息包含Tomcat started表示启动成功</span><br><span class="line"></span><br><span class="line">(4) 打开启动tomcat机器的IP地址和默认8080端口，如果为本机访问则请求http://localhost:8080；如果用其他机器访问，请执行ifconfig，找到此机器IP地址，然后访问http://10.211.55.4:8080</span><br><span class="line"></span><br><span class="line">(5) 如果在第4步无法访问tomcat主页，有可能是CentOS防火墙开启的原因，关闭即可</span><br><span class="line">    &lt;1&gt; 查看防火墙状态：sudo firewall-cmd --state</span><br><span class="line">    &lt;2&gt; 停止防火墙：sudo systemctl stop firewalld.service</span><br><span class="line">    &lt;3&gt; 禁止防火墙开机启动：sudo systemctl <span class="built_in">disable</span> firewalld.service</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Tomcat常用命令</p>
-</li>
+<ol start="4">
+<li>Tomcat常用命令</li>
 </ol>
 <blockquote>
 <ol>
