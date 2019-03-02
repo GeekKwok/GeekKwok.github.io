@@ -390,7 +390,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-03-02 19:40:37" itemprop="dateModified" datetime="2019-03-02T19:40:37+08:00">2019-03-02</time>
+                <time title="修改时间：2019-03-02 20:26:54" itemprop="dateModified" datetime="2019-03-02T20:26:54+08:00">2019-03-02</time>
               
             
           </span>
@@ -446,9 +446,9 @@
           
             <p>本文对Nginx的安装和基本使用进行了简要介绍。</p>
 <h3 id="一、Nginx简介"><a href="#一、Nginx简介" class="headerlink" title="一、Nginx简介"></a>一、Nginx简介</h3><ul>
-<li><h4 id="Nginx是什么"><a href="#Nginx是什么" class="headerlink" title="Nginx是什么"></a>Nginx是什么</h4><p>Nginx是一款轻量级<strong>Web服务器</strong>，也是一款<strong>反向代理服务器</strong>。</p>
+<li><h4 id="Nginx是什么？"><a href="#Nginx是什么？" class="headerlink" title="Nginx是什么？"></a>Nginx是什么？</h4><p>Nginx是一款轻量级<strong>Web服务器</strong>，也是一款<strong>反向代理服务器</strong>。</p>
 </li>
-<li><h4 id="Nginx能干什么"><a href="#Nginx能干什么" class="headerlink" title="Nginx能干什么"></a>Nginx能干什么</h4><p>Nginx能干的事情很多，这里简要罗列：</p>
+<li><h4 id="Nginx能干什么？"><a href="#Nginx能干什么？" class="headerlink" title="Nginx能干什么？"></a>Nginx能干什么？</h4><p>Nginx能干的事情很多，这里简要罗列：</p>
 <ol>
 <li>可直接支持Rails和PHP的程序</li>
 <li>可作为HTTP反向代理服务器</li>
@@ -457,7 +457,7 @@
 <li>帮助实现前端动静分离</li>
 </ol>
 </li>
-<li><h4 id="Nginx有什么特点"><a href="#Nginx有什么特点" class="headerlink" title="Nginx有什么特点"></a>Nginx有什么特点</h4><ol>
+<li><h4 id="Nginx有什么特点？"><a href="#Nginx有什么特点？" class="headerlink" title="Nginx有什么特点？"></a>Nginx有什么特点？</h4><ol>
 <li>高稳定</li>
 <li>高性能</li>
 <li>资源占用少</li>
@@ -468,48 +468,54 @@
 </li>
 </ul>
 <h3 id="二、Nginx安装（Linux）"><a href="#二、Nginx安装（Linux）" class="headerlink" title="二、Nginx安装（Linux）"></a>二、Nginx安装（Linux）</h3><ul>
-<li><p>安装环境</p>
+<li><h4 id="安装系统环境和版本"><a href="#安装系统环境和版本" class="headerlink" title="安装系统环境和版本"></a>安装系统环境和版本</h4><p>CentOS 7，Nginx 1.10.2</p>
 </li>
-<li><p>安装步骤</p>
+<li><h4 id="安装步骤"><a href="#安装步骤" class="headerlink" title="安装步骤"></a>安装步骤</h4><p>安装Nginx依赖：gcc、pcre、zlib、openssl</p>
+<ol>
+<li>安装gcc<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install gcc</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>安装命令</p>
+</ol>
+<p>注：可输入gcc -v查询版本信息看系统是否自带安装</p>
+<ol start="2">
+<li><p>安装pcre</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install pcre-devel</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>验证</p>
+<li><p>安装zlib</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install zlib zlib-devel</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>安装openssl</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install openssl openssl-devel</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>注：如需支持ssl，才需安装openssl</p>
+<ol start="5">
+<li><p>依赖安装综合命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y install gcc zlib zlib-devel pcre-devel openssl openssl-devel</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>下载源码包</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo wget http://nginx.org/download/nginx-1.10.2.tar.gz</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>解压缩包</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo tar -zxvf nginx-1.10.2.tar.gz</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>安装Nginx<br>（1）进入nginx目录执行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ./configure</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>注：也可以指定安装目录，增加参数–prefix=usr/nginx，如果不指定目录，则安装完后可以通过<code>whereis nginx</code>查看，默认安装目录为/usr/local/nginx。<br>（2）继续执行make<br>（3）继续执行make install</p>
 </li>
 </ul>
-<ol>
-<li><p>安装gcc：yum install gcc<br>（可输入gcc -v查询版本信息，看系统是否自带安装）</p>
+<h3 id="三、Nginx常用命令"><a href="#三、Nginx常用命令" class="headerlink" title="三、Nginx常用命令"></a>三、Nginx常用命令</h3><p>1.测试配置文件是否正常<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo usr/<span class="built_in">local</span>/nginx/sbin/nginx -t</span><br></pre></td></tr></table></figure></p>
+<p>2.启动Nginx<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo /usr/<span class="built_in">local</span>/nginx/sbin/nginx</span><br></pre></td></tr></table></figure></p>
+<p>3.停止Nginx<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo /usr/<span class="built_in">local</span>/nginx/sbin/nginx -s stop 或 sudo usr/<span class="built_in">local</span>/nginx/sbin/nginx -s quit</span><br></pre></td></tr></table></figure></p>
+<p>4.重启Nginx<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo /usr/<span class="built_in">local</span>/nginx/sbin/nginx -s reload</span><br></pre></td></tr></table></figure></p>
+<p>5.查看Nginx进程命令<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps -ef | grep nginx</span><br></pre></td></tr></table></figure></p>
+<p>6.平滑重启<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">kill</span> -HUP 【Nginx主进程号(即查看进程命令查到的PID)】</span><br></pre></td></tr></table></figure></p>
+<p>7.增加防火墙访问权限<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">1. sudo vim /etc/sysconfig/iptables</span><br><span class="line"></span><br><span class="line">2. -A INPUT -p tcp -m state --state NEW -m tcp --dport 80 -j ACCEPT</span><br><span class="line"></span><br><span class="line">3. :wq 保存退出</span><br><span class="line"></span><br><span class="line">4. sudo service iptables restart (重启防火墙)</span><br></pre></td></tr></table></figure></p>
+<h3 id="四、Nginx虚拟域名配置及测试验证"><a href="#四、Nginx虚拟域名配置及测试验证" class="headerlink" title="四、Nginx虚拟域名配置及测试验证"></a>四、Nginx虚拟域名配置及测试验证</h3><ul>
+<li><h4 id="配置nginx-conf文件"><a href="#配置nginx-conf文件" class="headerlink" title="配置nginx.conf文件"></a>配置nginx.conf文件</h4>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1. sudo vim /usr/<span class="built_in">local</span>/nginx/conf/nginx.conf</span><br><span class="line"></span><br><span class="line">2. 增加<span class="string">"include vhost/*.conf;"</span></span><br><span class="line"></span><br><span class="line">3. :wq保存退出</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>安装pcre：yum install pcre-devel</p>
-</li>
-<li><p>安装zlib：yum install zlib zlib-devel</p>
-</li>
-<li><p>安装openssl：yum install openssl openssl-devel<br>(如需支持ssl，才需安装openssl)</p>
-</li>
-</ol>
-<blockquote>
-<p>以上可以用一个综合命令：yum -y install gcc zlib zlib-devel pcre-devel openssl openssl-devel</p>
-</blockquote>
-<ol start="5">
-<li><p>下载源码包：sudo wget <a href="http://learning.happymmall.com/nginx/linux-nginx-1.10.2.tar.gz" target="_blank" rel="noopener">http://learning.happymmall.com/nginx/linux-nginx-1.10.2.tar.gz</a></p>
-</li>
-<li><p>解压缩：sudo tar -zxvf nginx-1.10.2.tar.gz</p>
-</li>
-<li><p>Nginx安装：</p>
-</li>
-</ol>
-<blockquote>
-<p>（1）进入nginx目录之后执行 sudo ./configure</p>
-</blockquote>
-<blockquote>
-<p><1> 也可以指定安装目录，增加参数 –prefix=/usr/nginx <br><br>  <2> 如果不指定路径，安装好后可以通过whereis nginx进行查询 <br><br>  <3> 默认安装在/usr/local/nginx</3></2></1></p>
-</blockquote>
-<blockquote>
-<p>（2）执行 sudo make</p>
-</blockquote>
-<blockquote>
-<p>（3）继续执行 sudo make install</p>
-</blockquote>
+</ul>
 <blockquote>
 <p>（4）Nginx虚拟域名配置及测试验证</p>
 </blockquote>
@@ -528,43 +534,7 @@
 <blockquote>
 <p>E.修改本机hosts并访问验证 <br><br>（1）修改本机hosts：sudo vim /etc/hosts <br><br>（2）添加10.211.55.4 image.geek.com <br><br>（3）:wq保存退出 <br><br>（4）浏览器访问 image.geek.com <br><br>（5）注意若浏览器访问未生效时可能需要清空一下浏览器缓存</p>
 </blockquote>
-<h3 id="三、Nginx常用命令"><a href="#三、Nginx常用命令" class="headerlink" title="三、Nginx常用命令"></a>三、Nginx常用命令</h3><ol>
-<li><p>测试配置文件：/nginx/sbin/nginx -t</p>
-</li>
-<li><p>启动命令：/nginx/sbin/nginx</p>
-</li>
-<li><p>停止命令：/nginx/sbin/nginx -s stop 或者 /nginx/sbin/nginx -s quit</p>
-</li>
-<li><p>重启命令：/nginx/sbin/nginx -s reload</p>
-</li>
-<li><p>查看进程命令：ps -ef | grep nginx</p>
-</li>
-<li><p>平滑重启：kill -HUP 【Nginx主进程号(即查看进行命令查到的PID)】</p>
-</li>
-<li><p>增加防火墙访问权限</p>
-</li>
-</ol>
-<blockquote>
-<ol>
-<li>sudo vim /etc/sysconfig/iptables</li>
-</ol>
-</blockquote>
-<blockquote>
-<ol start="2">
-<li>-A INPUT -p tcp -m state –state NEW -m tcp –dport 80 -j ACCEPT</li>
-</ol>
-</blockquote>
-<blockquote>
-<ol start="3">
-<li>保存退出</li>
-</ol>
-</blockquote>
-<blockquote>
-<ol start="4">
-<li>重启防火墙：sudo service iptables restart</li>
-</ol>
-</blockquote>
-<h3 id="四、Nginx项目配置及验证"><a href="#四、Nginx项目配置及验证" class="headerlink" title="四、Nginx项目配置及验证"></a>四、Nginx项目配置及验证</h3><h3 id="五、Nginx本地玩耍注意事项"><a href="#五、Nginx本地玩耍注意事项" class="headerlink" title="五、Nginx本地玩耍注意事项"></a>五、Nginx本地玩耍注意事项</h3>
+<h3 id="五、Nginx本地玩耍注意事项"><a href="#五、Nginx本地玩耍注意事项" class="headerlink" title="五、Nginx本地玩耍注意事项"></a>五、Nginx本地玩耍注意事项</h3>
           
         
       
