@@ -100,16 +100,18 @@
 
 
 
-  <meta name="description" content="Keep Learning and create wonderful life">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Geek.Kwok Blog">
-<meta property="og:url" content="http://blog.geekkwok.com/tags/Linux-SSH/index.html">
+  <meta name="description" content="vsftpd简介vsftpd是”very secure FTP daemon”的缩写，是一个完全免费的、开放源代码的ftp服务器软件。 vsftpd安装1.安装1yum -y install vsftpd 2.创建虚拟用户(1) 选择在根或用户目录下创建ftp文件夹：sudo mkdir /ftpfile (2) 添加匿名用户：useradd ftpuser -d /ftpfile -s /sbi">
+<meta name="keywords" content="Linux,vsftpd">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vsftpd安装与配置">
+<meta property="og:url" content="http://blog.geekkwok.com/2019/01/24/20190124.vsftpd安装与配置/index.html">
 <meta property="og:site_name" content="Geek.Kwok Blog">
-<meta property="og:description" content="Keep Learning and create wonderful life">
+<meta property="og:description" content="vsftpd简介vsftpd是”very secure FTP daemon”的缩写，是一个完全免费的、开放源代码的ftp服务器软件。 vsftpd安装1.安装1yum -y install vsftpd 2.创建虚拟用户(1) 选择在根或用户目录下创建ftp文件夹：sudo mkdir /ftpfile (2) 添加匿名用户：useradd ftpuser -d /ftpfile -s /sbi">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-03-01T13:30:01.525Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Geek.Kwok Blog">
-<meta name="twitter:description" content="Keep Learning and create wonderful life">
+<meta name="twitter:title" content="vsftpd安装与配置">
+<meta name="twitter:description" content="vsftpd简介vsftpd是”very secure FTP daemon”的缩写，是一个完全免费的、开放源代码的ftp服务器软件。 vsftpd安装1.安装1yum -y install vsftpd 2.创建虚拟用户(1) 选择在根或用户目录下创建ftp文件夹：sudo mkdir /ftpfile (2) 添加匿名用户：useradd ftpuser -d /ftpfile -s /sbi">
 
 
 
@@ -118,7 +120,7 @@
 
 
 
-  <link rel="canonical" href="http://blog.geekkwok.com/tags/Linux-SSH/">
+  <link rel="canonical" href="http://blog.geekkwok.com/2019/01/24/20190124.vsftpd安装与配置/">
 
 
 
@@ -128,7 +130,7 @@
   };
 </script>
 
-  <title>标签: Linux SSH | Geek.Kwok Blog</title>
+  <title>vsftpd安装与配置 | Geek.Kwok Blog</title>
   
 
 
@@ -176,7 +178,7 @@
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
@@ -231,7 +233,7 @@
         
         
           
-          <li class="menu-item menu-item-tags menu-item-active">
+          <li class="menu-item menu-item-tags">
 
     
     
@@ -287,25 +289,6 @@
   
     
 
-    
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-    
-
-  
-
-
   
 
   
@@ -330,56 +313,217 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block tag">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>Linux SSH<small>标签</small>
-        </h1>
-      </div>
+  
 
-      
-        
+  
+  
+  
+
+  
 
   <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.geekkwok.com/2019/01/24/20190124.vsftpd安装与配置/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Geek.Kwok">
+      <meta itemprop="description" content="Keep Learning and create wonderful life">
+      <meta itemprop="image" content="/images/geekkwok-avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Geek.Kwok Blog">
+    </span>
+
+    
+      <header class="post-header">
+
         
-          <a class="post-title-link" href="/2019/01/19/20190119.Mac下Parallels安装CentOS虚拟机后开启SSH连接/" itemprop="url">
-            
-              <span itemprop="name">Mac下Parallels安装CentOS虚拟机后开启SSH连接</span>
-            
-          </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">vsftpd安装与配置
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-01-19T00:30:00+08:00" content="2019-01-19">
-          01-19
-        </time>
-      </div>
+              
+            
+          </h1>
+        
 
-    </header>
-  </article>
+        <div class="post-meta">
+          <span class="post-time">
 
+            
+            
+            
 
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-01-24 00:30:00" itemprop="dateCreated datePublished" datetime="2019-01-24T00:30:00+08:00">2019-01-24</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-03-01 21:30:01" itemprop="dateModified" datetime="2019-03-01T21:30:01+08:00">2019-03-01</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Development/" itemprop="url" rel="index"><span itemprop="name">Development</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="vsftpd简介"><a href="#vsftpd简介" class="headerlink" title="vsftpd简介"></a>vsftpd简介</h3><p>vsftpd是”very secure FTP daemon”的缩写，是一个完全免费的、开放源代码的ftp服务器软件。</p>
+<h3 id="vsftpd安装"><a href="#vsftpd安装" class="headerlink" title="vsftpd安装"></a>vsftpd安装</h3><h4 id="1-安装"><a href="#1-安装" class="headerlink" title="1.安装"></a>1.安装</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y install vsftpd</span><br></pre></td></tr></table></figure>
+<h4 id="2-创建虚拟用户"><a href="#2-创建虚拟用户" class="headerlink" title="2.创建虚拟用户"></a>2.创建虚拟用户</h4><p>(1) 选择在根或用户目录下创建ftp文件夹：sudo mkdir /ftpfile</p>
+<p>(2) 添加匿名用户：useradd ftpuser -d /ftpfile -s /sbin/nologin</p>
+<p>(3) 修改ftpfile权限：chown -R ftpuser.ftpuser /ftpfile</p>
+<p>(4) 重设ftpuser密码：passwd ftpuser</p>
+<h4 id="3-配置"><a href="#3-配置" class="headerlink" title="3.配置"></a>3.配置</h4><p>(1) cd /etc/vsftpd</p>
+<p>(2) sudo vim chroot_list</p>
+<p>(3) 把刚才新增的虚拟用户添加到此配置文件中，后续要引用</p>
+<p>(4) :wq保存退出</p>
+<p>(5) sudo vim /etc/selinux/config, 修改为SELINUX=disabled, :wq保存退出</p>
+<p>(6) sudo vim /etc/vsftpd/vsftpd.conf</p>
+<h4 id="4-防火墙设置"><a href="#4-防火墙设置" class="headerlink" title="4.防火墙设置"></a>4.防火墙设置</h4><h3 id="vsftpd验证"><a href="#vsftpd验证" class="headerlink" title="vsftpd验证"></a>vsftpd验证</h3><h3 id="vsftpd常用命令"><a href="#vsftpd常用命令" class="headerlink" title="vsftpd常用命令"></a>vsftpd常用命令</h3>
       
     </div>
 
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Linux/" rel="tag"># Linux</a>
+          
+            <a href="/tags/vsftpd/" rel="tag"># vsftpd</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/01/24/20190125.Nginx安装与配置/" rel="next" title="Nginx安装与配置">
+                <i class="fa fa-chevron-left"></i> Nginx安装与配置
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
+
+  </div>
 
 
           </div>
           
+
+  
+
+
 
         </div>
         
@@ -400,8 +544,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -418,7 +571,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">6</span>
+                    <span class="site-state-item-count">9</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -458,7 +611,15 @@
                     
                       
                     
-                    <span class="site-state-item-count">5</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">9</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -516,6 +677,23 @@
         </div>
       </div>
 
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#vsftpd简介"><span class="nav-number">1.</span> <span class="nav-text">vsftpd简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#vsftpd安装"><span class="nav-number">2.</span> <span class="nav-text">vsftpd安装</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-安装"><span class="nav-number">2.1.</span> <span class="nav-text">1.安装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-创建虚拟用户"><span class="nav-number">2.2.</span> <span class="nav-text">2.创建虚拟用户</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-配置"><span class="nav-number">2.3.</span> <span class="nav-text">3.配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-防火墙设置"><span class="nav-number">2.4.</span> <span class="nav-text">4.防火墙设置</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#vsftpd验证"><span class="nav-number">3.</span> <span class="nav-text">vsftpd验证</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#vsftpd常用命令"><span class="nav-number">4.</span> <span class="nav-text">vsftpd常用命令</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
       
 
       
@@ -648,6 +826,10 @@
 
 
   
+  <script src="/js/src/scrollspy.js?v=6.7.0"></script>
+<script src="/js/src/post-details.js?v=6.7.0"></script>
+
+
 
   
 
@@ -658,6 +840,8 @@
 
   
 
+
+  
 
 
   

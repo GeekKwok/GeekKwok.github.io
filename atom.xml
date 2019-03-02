@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.geekkwok.com/"/>
-  <updated>2019-03-01T12:07:24.327Z</updated>
+  <updated>2019-03-01T13:30:01.525Z</updated>
   <id>http://blog.geekkwok.com/</id>
   
   <author>
@@ -17,11 +17,93 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>vsftpd安装与配置</title>
+    <link href="http://blog.geekkwok.com/2019/01/24/20190124.vsftpd%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/"/>
+    <id>http://blog.geekkwok.com/2019/01/24/20190124.vsftpd安装与配置/</id>
+    <published>2019-01-23T16:30:00.000Z</published>
+    <updated>2019-03-01T13:30:01.525Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="vsftpd简介"><a href="#vsftpd简介" class="headerlink" title="vsftpd简介"></a>vsftpd简介</h3><p>vsftpd是”very secure FTP daemon”的缩写，是一个完全免费的、开放源代码的ftp服务器软件。</p><h3 id="vsftpd安装"><a href="#vsftpd安装" class="headerlink" title="vsftpd安装"></a>vsftpd安装</h3><h4 id="1-安装"><a href="#1-安装" class="headerlink" title="1.安装"></a>1.安装</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y install vsftpd</span><br></pre></td></tr></table></figure><h4 id="2-创建虚拟用户"><a href="#2-创建虚拟用户" class="headerlink" title="2.创建虚拟用户"></a>2.创建虚拟用户</h4><p>(1) 选择在根或用户目录下创建ftp文件夹：sudo mkdir /ftpfile</p><p>(2) 添加匿名用户：useradd ftpuser -d /ftpfile -s /sbin/nologin</p><p>(3) 修改ftpfile权限：chown -R ftpuser.ftpuser /ftpfile</p><p>(4) 重设ftpuser密码：passwd ftpuser</p><h4 id="3-配置"><a href="#3-配置" class="headerlink" title="3.配置"></a>3.配置</h4><p>(1) cd /etc/vsftpd</p><p>(2) sudo vim chroot_list</p><p>(3) 把刚才新增的虚拟用户添加到此配置文件中，后续要引用</p><p>(4) :wq保存退出</p><p>(5) sudo vim /etc/selinux/config, 修改为SELINUX=disabled, :wq保存退出</p><p>(6) sudo vim /etc/vsftpd/vsftpd.conf</p><h4 id="4-防火墙设置"><a href="#4-防火墙设置" class="headerlink" title="4.防火墙设置"></a>4.防火墙设置</h4><h3 id="vsftpd验证"><a href="#vsftpd验证" class="headerlink" title="vsftpd验证"></a>vsftpd验证</h3><h3 id="vsftpd常用命令"><a href="#vsftpd常用命令" class="headerlink" title="vsftpd常用命令"></a>vsftpd常用命令</h3>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;vsftpd简介&quot;&gt;&lt;a href=&quot;#vsftpd简介&quot; class=&quot;headerlink&quot; title=&quot;vsftpd简介&quot;&gt;&lt;/a&gt;vsftpd简介&lt;/h3&gt;&lt;p&gt;vsftpd是”very secure FTP daemon”的缩写，是一个完全免费的、开放
+      
+    
+    </summary>
+    
+      <category term="Development" scheme="http://blog.geekkwok.com/categories/Development/"/>
+    
+    
+      <category term="Linux" scheme="http://blog.geekkwok.com/tags/Linux/"/>
+    
+      <category term="vsftpd" scheme="http://blog.geekkwok.com/tags/vsftpd/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Nginx安装与配置</title>
+    <link href="http://blog.geekkwok.com/2019/01/24/20190125.Nginx%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/"/>
+    <id>http://blog.geekkwok.com/2019/01/24/20190125.Nginx安装与配置/</id>
+    <published>2019-01-23T16:30:00.000Z</published>
+    <updated>2019-03-01T15:30:01.593Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="Nginx安装"><a href="#Nginx安装" class="headerlink" title="Nginx安装"></a>Nginx安装</h3><ol><li><p>安装gcc：yum install gcc<br>（可输入gcc -v查询版本信息，看系统是否自带安装）</p></li><li><p>安装pcre：yum install pcre-devel</p></li><li><p>安装zlib：yum install zlib zlib-devel</p></li><li><p>安装openssl：yum install openssl openssl-devel<br>(如需支持ssl，才需安装openssl)</p></li></ol><p>以上可以用一个综合命令：yum -y install gcc zlib zlib-devel pcre-devel openssl openssl-devel</p><ol start="5"><li><p>下载源码包：sudo wget <a href="http://learning.happymmall.com/nginx/linux-nginx-1.10.2.tar.gz" target="_blank" rel="noopener">http://learning.happymmall.com/nginx/linux-nginx-1.10.2.tar.gz</a></p></li><li><p>解压缩：sudo tar -zxvf nginx-1.10.2.tar.gz</p></li><li><p>Nginx安装：</p></li></ol><blockquote><p>（1）进入nginx目录之后执行 sudo ./configure</p></blockquote><blockquote><p><1> 也可以指定安装目录，增加参数 –prefix=/usr/nginx <br><br>  <2> 如果不指定路径，安装好后可以通过whereis nginx进行查询 <br><br>  <3> 默认安装在/usr/local/nginx</3></2></1></p></blockquote><blockquote><p>（2）执行 sudo make</p></blockquote><blockquote><p>（3）继续执行 sudo make install</p></blockquote><h3 id="Nginx常用命令"><a href="#Nginx常用命令" class="headerlink" title="Nginx常用命令"></a>Nginx常用命令</h3><ol><li><p>测试配置文件：/nginx/sbin/nginx -t</p></li><li><p>启动命令：/nginx/sbin/nginx</p></li><li><p>停止命令：/nginx/sbin/nginx -s stop 或者 /nginx/sbin/nginx -s quit</p></li><li><p>重启命令：/nginx/sbin/nginx -s reload</p></li><li><p>查看进程命令：ps -ef | grep nginx</p></li><li><p>平滑重启：kill -HUP 【Nginx主进程号(即查看进行命令查到的PID)】</p></li><li><p>增加防火墙访问权限</p></li></ol><blockquote><ol><li>sudo vim /etc/sysconfig/iptables</li></ol></blockquote><blockquote><ol start="2"><li>-A INPUT -p tcp -m state –state NEW -m tcp –dport 80 -j ACCEPT</li></ol></blockquote><blockquote><ol start="3"><li>保存退出</li></ol></blockquote><blockquote><ol start="4"><li>重启防火墙：sudo service iptables restart</li></ol></blockquote>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;Nginx安装&quot;&gt;&lt;a href=&quot;#Nginx安装&quot; class=&quot;headerlink&quot; title=&quot;Nginx安装&quot;&gt;&lt;/a&gt;Nginx安装&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;安装gcc：yum install gcc&lt;br&gt;（可输入gcc -v查询版本信息
+      
+    
+    </summary>
+    
+      <category term="Development" scheme="http://blog.geekkwok.com/categories/Development/"/>
+    
+    
+      <category term="Linux" scheme="http://blog.geekkwok.com/tags/Linux/"/>
+    
+      <category term="Nginx" scheme="http://blog.geekkwok.com/tags/Nginx/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Maven安装与配置</title>
+    <link href="http://blog.geekkwok.com/2019/01/23/20190123.Maven%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/"/>
+    <id>http://blog.geekkwok.com/2019/01/23/20190123.Maven安装与配置/</id>
+    <published>2019-01-22T16:30:00.000Z</published>
+    <updated>2019-03-01T12:49:00.261Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="Maven简介"><a href="#Maven简介" class="headerlink" title="Maven简介"></a>Maven简介</h3><h4 id="Maven是什么"><a href="#Maven是什么" class="headerlink" title="Maven是什么"></a>Maven是什么</h4><p>Apache Maven Project – Apache的优秀开源项目，Maven是Java项目的构建和管理工具。</p><h4 id="Maven能干什么？"><a href="#Maven能干什么？" class="headerlink" title="Maven能干什么？"></a>Maven能干什么？</h4><h3 id="Maven安装"><a href="#Maven安装" class="headerlink" title="Maven安装"></a>Maven安装</h3><ol><li><p>确保已经安装了JDK</p></li><li><p>下载maven</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo wget http://learning.happymmall.com/maven/apache-maven-3.0.5-bin.tar.gz</span><br></pre></td></tr></table></figure></li><li><p>通过tar或unzip进行解压缩</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -zxvf apache-maven-3.0.5-bin.tar.gz</span><br></pre></td></tr></table></figure></li><li><p>配置环境变量</p></li></ol><p>(1) 打开配置文件<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/profile</span><br></pre></td></tr></table></figure></p><p>(2) 在最下面增加Maven环境变量<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> MAVEN_HOME=/developer/apache-maven-3.0.5</span><br><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$JAVA_HOME</span>/bin:<span class="variable">$MAVEN_HOME</span>/bin:<span class="variable">$PATH</span></span><br></pre></td></tr></table></figure></p><p>(3) 使之环境变量配置生效<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">source</span> /etc/profile</span><br></pre></td></tr></table></figure></p><p>(4) 执行验证<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mvn -version</span><br></pre></td></tr></table></figure></p><h3 id="Maven常用命令"><a href="#Maven常用命令" class="headerlink" title="Maven常用命令"></a>Maven常用命令</h3><ol><li><p>清除命令：mvn clean</p></li><li><p>编译命令：mvn compile</p></li><li><p>打包命令：mvn package</p></li><li><p>跳过单元测试：mvn clean package -Dmaven.test.skip=true</p></li></ol><h3 id="Maven项目配置"><a href="#Maven项目配置" class="headerlink" title="Maven项目配置"></a>Maven项目配置</h3>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;Maven简介&quot;&gt;&lt;a href=&quot;#Maven简介&quot; class=&quot;headerlink&quot; title=&quot;Maven简介&quot;&gt;&lt;/a&gt;Maven简介&lt;/h3&gt;&lt;h4 id=&quot;Maven是什么&quot;&gt;&lt;a href=&quot;#Maven是什么&quot; class=&quot;headerli
+      
+    
+    </summary>
+    
+      <category term="Development" scheme="http://blog.geekkwok.com/categories/Development/"/>
+    
+    
+      <category term="Linux" scheme="http://blog.geekkwok.com/tags/Linux/"/>
+    
+      <category term="Maven" scheme="http://blog.geekkwok.com/tags/Maven/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Tomcat安装与配置</title>
     <link href="http://blog.geekkwok.com/2019/01/22/20190122.Tomcat%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/"/>
     <id>http://blog.geekkwok.com/2019/01/22/20190122.Tomcat安装与配置/</id>
     <published>2019-01-21T16:30:00.000Z</published>
-    <updated>2019-03-01T12:07:24.327Z</updated>
+    <updated>2019-03-01T12:49:49.930Z</updated>
     
     <content type="html"><![CDATA[<ol><li>下载Tomcat</li></ol><blockquote><p>apache-tomcat-7.0.73.tar.gz<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo wget http://learning.happymmall.com/tomcat/apache-tomcat-7.0.73.tar.gz</span><br></pre></td></tr></table></figure></p></blockquote><ol start="2"><li>安装Tomcat与配置</li></ol><blockquote><ol><li>解压缩<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -zxvf apache-tomcat-7.0.73.tar.gz</span><br></pre></td></tr></table></figure></li></ol></blockquote><blockquote><ol start="2"><li>配置环境变量<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">(1) sudo vim /etc/profile</span><br><span class="line"></span><br><span class="line">(2) 在最下方增加如下内容：</span><br><span class="line"><span class="built_in">export</span> CATALINA_HOME=/developer/apache-tomcat-7.0.73</span><br><span class="line"></span><br><span class="line">(3) <span class="string">":wq"</span>命令保存退出</span><br><span class="line"></span><br><span class="line">(4) 使配置生效：<span class="built_in">source</span> /etc/profile</span><br></pre></td></tr></table></figure></li></ol></blockquote><blockquote><ol start="3"><li>配置UTF-8字符集<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(1) 进入tomcat安装目录conf文件夹编辑server.xml</span><br><span class="line"></span><br><span class="line">(2) 找到配置8080默认端口的位置，在xml节点末尾增加URIEncoding=<span class="string">"UTF-8"</span></span><br></pre></td></tr></table></figure></li></ol></blockquote><ol start="3"><li>Tomcat验证</li></ol><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">(1) 进入tomcat安装目录，并进入bin目录</span><br><span class="line"></span><br><span class="line">(2) 执行./startup.sh</span><br><span class="line"></span><br><span class="line">(3) 看提示信息包含Tomcat started表示启动成功</span><br><span class="line"></span><br><span class="line">(4) 打开启动tomcat机器的IP地址和默认8080端口，如果为本机访问则请求http://localhost:8080；如果用其他机器访问，请执行ifconfig，找到此机器IP地址，然后访问http://10.211.55.4:8080</span><br><span class="line"></span><br><span class="line">(5) 如果在第4步无法访问tomcat主页，有可能是CentOS防火墙开启的原因，关闭即可</span><br><span class="line">    &lt;1&gt; 查看防火墙状态：sudo firewall-cmd --state</span><br><span class="line">    &lt;2&gt; 停止防火墙：sudo systemctl stop firewalld.service</span><br><span class="line">    &lt;3&gt; 禁止防火墙开机启动：sudo systemctl <span class="built_in">disable</span> firewalld.service</span><br></pre></td></tr></table></figure><ol start="4"><li>Tomcat常用命令</li></ol><blockquote><ol><li>启动tomcat：${CATALINA_HOME}/bin/startup.sh</li></ol></blockquote><blockquote><ol start="2"><li>关闭tomcat：${CATALINA_HOME}/bin/shutdown.sh</li></ol></blockquote>]]></content>
     
@@ -41,6 +123,8 @@
       <category term="Development" scheme="http://blog.geekkwok.com/categories/Development/"/>
     
     
+      <category term="Linux" scheme="http://blog.geekkwok.com/tags/Linux/"/>
+    
       <category term="Tomcat" scheme="http://blog.geekkwok.com/tags/Tomcat/"/>
     
   </entry>
@@ -50,7 +134,7 @@
     <link href="http://blog.geekkwok.com/2019/01/21/20190121.JDK%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/"/>
     <id>http://blog.geekkwok.com/2019/01/21/20190121.JDK安装与配置/</id>
     <published>2019-01-20T16:30:00.000Z</published>
-    <updated>2019-03-01T12:03:14.791Z</updated>
+    <updated>2019-03-01T12:50:18.888Z</updated>
     
     <content type="html"><![CDATA[<ol><li>下载JDK</li></ol><blockquote><p>jdk-7u80-linux-x64.rpm</p></blockquote><ol start="2"><li>安装JDK与配置</li></ol><blockquote><ol><li>清理系统默认自带JDK<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">查看：rpm -aq | grep jdk</span><br><span class="line">卸载：sudo yum remove xxx(xxx为前面查看到已安装的内容)</span><br></pre></td></tr></table></figure></li></ol></blockquote><blockquote><ol start="2"><li>给安装文件赋权限<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo chmod 777 jdk-7u80-linux-x64.rpm</span><br></pre></td></tr></table></figure></li></ol></blockquote><blockquote><ol start="3"><li>安装JDK<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo rpm -ivh jdk-7u80-linux-x64.rpm</span><br></pre></td></tr></table></figure></li></ol></blockquote><blockquote><ol start="4"><li>默认安装路径为/usr/java/</li></ol></blockquote><blockquote><ol start="5"><li>配置环境变量<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">(1) sudo vim /etc/profile</span><br><span class="line"></span><br><span class="line">(2) 在最下方增加如下内容：</span><br><span class="line"><span class="built_in">export</span> JAVA_HOME=/usr/java/jdk1.7.0_80</span><br><span class="line"><span class="built_in">export</span> CLASSPATH=.:<span class="variable">$JAVA_HOME</span>/jre/lib/rt.jar:<span class="variable">$JAVA_HOME</span>/lib/dt.jar:<span class="variable">$JAVA_HOME</span>/lib/tools.jar</span><br><span class="line"></span><br><span class="line">(3) 在<span class="built_in">export</span> PATH中添加<span class="variable">$JAVA_HOME</span>/bin</span><br><span class="line"></span><br><span class="line">(4) <span class="string">":wq"</span>命令保存退出</span><br><span class="line"></span><br><span class="line">(5) 使配置生效：<span class="built_in">source</span> /etc/profile</span><br></pre></td></tr></table></figure></li></ol></blockquote><ol start="3"><li>通过”java -version”命令验证JDK是否安装成功</li></ol>]]></content>
     
@@ -77,6 +161,8 @@
       <category term="Development" scheme="http://blog.geekkwok.com/categories/Development/"/>
     
     
+      <category term="Linux" scheme="http://blog.geekkwok.com/tags/Linux/"/>
+    
       <category term="JDK" scheme="http://blog.geekkwok.com/tags/JDK/"/>
     
   </entry>
@@ -86,7 +172,7 @@
     <link href="http://blog.geekkwok.com/2019/01/20/20190120.Linux%E8%BD%AF%E4%BB%B6%E6%BA%90%E9%85%8D%E7%BD%AE/"/>
     <id>http://blog.geekkwok.com/2019/01/20/20190120.Linux软件源配置/</id>
     <published>2019-01-19T16:30:00.000Z</published>
-    <updated>2019-03-01T09:17:59.494Z</updated>
+    <updated>2019-03-01T12:50:33.075Z</updated>
     
     <content type="html"><![CDATA[<p>为了保持开发环境与线上环境的一致，我把虚拟机下的CentOS7的软件源配置为与生产环境一致。</p><ol><li><p>备份</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.backup</span><br></pre></td></tr></table></figure></li><li><p>更新文件</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo</span><br></pre></td></tr></table></figure></li><li><p>重建缓存</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo yum makecache</span><br></pre></td></tr></table></figure></li></ol>]]></content>
     
@@ -114,7 +200,7 @@
     <link href="http://blog.geekkwok.com/2019/01/19/20190119.Mac%E4%B8%8BParallels%E5%AE%89%E8%A3%85CentOS%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%90%8E%E5%BC%80%E5%90%AFSSH%E8%BF%9E%E6%8E%A5/"/>
     <id>http://blog.geekkwok.com/2019/01/19/20190119.Mac下Parallels安装CentOS虚拟机后开启SSH连接/</id>
     <published>2019-01-18T16:30:00.000Z</published>
-    <updated>2019-03-01T09:06:57.350Z</updated>
+    <updated>2019-03-01T12:50:48.187Z</updated>
     
     <content type="html"><![CDATA[<p>&nbsp;&nbsp;&nbsp;&nbsp;在Mac系统中，在虚拟机Parallels下，安装了CentOS7系统，现在想通过Mac本地ssh工具连接虚拟机中的CentOS7，则需要开启SSH连接，操作步骤如下：</p><ol><li><p>确保CentOS7安装了openssh-server</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">查看是否已安装：</span><br><span class="line">yum list installed | grep openssh-server</span><br><span class="line"></span><br><span class="line">安装openssh-server：</span><br><span class="line">yum install openssh-server</span><br></pre></td></tr></table></figure></li><li><p>找到sshd服务配置文件/etc/ssh/sshd_config并进行配置</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1. 打开监听端口22：Port 22</span><br><span class="line">2. 开启允许远程登录：PermitRootLogin yes</span><br><span class="line">3. 开启使用用户名密码来作为连接验证：PasswordAuthentication yes</span><br></pre></td></tr></table></figure></li><li><p>开启sshd服务并设置为随系统自启动</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1. 开启服务：sudo service sshd start</span><br><span class="line">2. 检查服务是否已开启：ps -e | grep sshd 或者 netstat -an | grep 22</span><br><span class="line">3. 将sshd服务添加至自启动列表：systemctl <span class="built_in">enable</span> sshd</span><br><span class="line">4. 检查是否开启了sshd服务自启动：systemctl list-unit-files | grep sshd</span><br></pre></td></tr></table></figure></li><li><p>通过ifconfig找出虚拟机的IP地址（例如eth0的inet：10.211.55.4）</p></li><li><p>在Mac本地用ssh工具连接虚拟机</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ssh username@10.211.55.4</span><br><span class="line">输入密码即可进入系统</span><br></pre></td></tr></table></figure></li></ol>]]></content>
     
@@ -132,7 +218,9 @@
       <category term="Development" scheme="http://blog.geekkwok.com/categories/Development/"/>
     
     
-      <category term="Linux SSH" scheme="http://blog.geekkwok.com/tags/Linux-SSH/"/>
+      <category term="Linux" scheme="http://blog.geekkwok.com/tags/Linux/"/>
+    
+      <category term="SSH" scheme="http://blog.geekkwok.com/tags/SSH/"/>
     
   </entry>
   
@@ -141,7 +229,7 @@
     <link href="http://blog.geekkwok.com/2019/01/18/20190118.intellij-idea-keymap/"/>
     <id>http://blog.geekkwok.com/2019/01/18/20190118.intellij-idea-keymap/</id>
     <published>2019-01-17T16:30:00.000Z</published>
-    <updated>2019-01-22T10:02:38.917Z</updated>
+    <updated>2019-03-01T12:51:51.809Z</updated>
     
     <content type="html"><![CDATA[<p>&nbsp;&nbsp;&nbsp;&nbsp;这是一份 IntelliJ IDEA 快捷键指南，用于提升开发效率，整理出来并备份以作查阅之用。</p><ul><li>以下 KeyMap 以 Mac OS X 10.5+ 为基础进行了微调</li><li>所有快捷操作均通过了 Mac 系统实践操作验证</li><li>验证过程中操作不生效的主要冲突软件有 Sogou 输入法、Mac 系统相关软件等，调整原则以 IntelliJ IDEA 为优先</li></ul><p>&nbsp;</p><h2 id="Edit-编辑"><a href="#Edit-编辑" class="headerlink" title="Edit 编辑"></a>Edit 编辑</h2><ul><li><h4 id="Command-组合键"><a href="#Command-组合键" class="headerlink" title="Command 组合键"></a>Command 组合键</h4><ul><li><strong>提示信息</strong></li><li><strong>Command + 鼠标放在代码上</strong> 显示代码简要信息</li><li><strong>Command + P</strong> 显示方法的参数信息</li><li><p><strong>Command + F1</strong> 在错误或警告处显示具体描述信息</p></li><li><p><strong>代码生成</strong></p></li><li><strong>Command + N / Ctrl + N / Ctrl + Enter</strong> 生成代码，getter、setter、constructor、hashCode/equals、toString 等等</li><li><strong>Command + Option + T</strong> 包围代码，使用if..else、try..catch、for、synchronized 等包围选中的代码</li><li><p><strong>Command + Shift + Enter</strong> 自动结束代码，行末自动添加分号</p></li><li><p><strong>代码编辑</strong></p></li><li><strong>Command + C</strong> 复制当前行或选定的块到剪贴板</li><li><strong>Command + X</strong> 剪切当前行或选定的块到剪贴板</li><li><strong>Command + V</strong> 从剪贴板粘贴</li><li><strong>Command + Shift + V</strong> 从最近的缓冲区粘贴</li><li><strong>Command + D</strong> 复制当前行或选定的块到下一行</li><li><strong>Command + Delete</strong> 删除当前行或选定的块<br>&nbsp;</li><li><strong>Command + Shift + U</strong> 大小写切换</li><li><strong>Command + Enter</strong> 智能的拆分拼接的行<br>&nbsp;</li><li><strong>Command + /</strong> 注释 / 取消 行注释</li><li><p><strong>Command + Option + /</strong> 注释 / 取消 块注释</p></li><li><p><strong>代码格式</strong></p></li><li><strong>Command + 加号 / Command + 减号</strong> 展开 / 折叠代码块</li><li><strong>Command + Shift + 加号 / Command + Shift + 减号</strong> 展开 / 折叠所有代码块</li><li><p><strong>Command + Option + L</strong> 格式化代码</p></li><li><p><strong>其他</strong></p></li><li><strong>Command + W</strong> 关闭活动的编辑器选项卡</li><li><strong>Command + Shift + ] / Command + Shift + [</strong> 选择直到代码块结束 / 开始（不起作用？Mac OSX10.5+分别是Select Next Tab / Select Previous Tab的快捷键）</li></ul></li><li><h4 id="Option-组合键"><a href="#Option-组合键" class="headerlink" title="Option 组合键"></a>Option 组合键</h4><ul><li><strong>代码编辑</strong></li><li><strong>Option + Enter</strong> 显示意向动作和快速修复代码<br>&nbsp;</li><li><strong>Option + 方向键上</strong> 连续选中代码块</li><li><strong>Option + 方向键下</strong> 减少当前选中的代码块<br>&nbsp;</li><li><strong>Option + Delete</strong> 删除到单词的开头</li><li><strong>Option + Fn + Delete</strong> 删除到单词的末尾</li></ul></li><li><h4 id="Control-组合键"><a href="#Control-组合键" class="headerlink" title="Control 组合键"></a>Control 组合键</h4><ul><li><strong>代码编辑</strong></li><li><strong>Ctrl + Space</strong> 基本代码补全，补全任何类、方法、变量</li><li><strong>Ctrl + Shift + Space</strong> 智能代码补全，过滤器方法列表和变量的预期类型</li><li><strong>Ctrl + Shift + J</strong> 智能的将下一行代码拼接到当前行之后成一行<br>&nbsp;</li><li><strong>Ctrl + O</strong> 覆盖方法，重写父类方法</li><li><strong>Ctrl + I</strong> 实现方法，实现接口中的方法<br>&nbsp;</li><li><strong>Ctrl + Option + O</strong> 优化import</li><li><p><strong>Ctrl + Option + I</strong> 自动缩进线</p></li><li><p><strong>其他</strong></p></li><li><strong>Ctrl + J</strong> 快速查看文档</li><li><strong>Ctrl + Shift + Q</strong> 显示上下文信息（还没搞清楚具体作用）</li></ul></li><li><h4 id="Shift-组合键"><a href="#Shift-组合键" class="headerlink" title="Shift 组合键"></a>Shift 组合键</h4><ul><li><strong>代码编辑</strong></li><li><p><strong>Shift + Enter</strong> 开始新的一行</p></li><li><p><strong>其他</strong></p></li><li><strong>Shift + F1</strong> 查看外部文档，在某些代码上会触发浏览器显示相关文档</li></ul></li><li><h4 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h4><ul><li><strong>代码编辑</strong></li><li><strong>Tab / Shift + Tab</strong> 缩进代码 / 反缩进代码</li></ul></li></ul><p>&nbsp;</p><h2 id="Search-Replace-查询-替换"><a href="#Search-Replace-查询-替换" class="headerlink" title="Search / Replace 查询 / 替换"></a>Search / Replace 查询 / 替换</h2><ul><li><h4 id="查询"><a href="#查询" class="headerlink" title="查询"></a>查询</h4><ul><li><strong>Double Shift</strong> 查询任何东西<br>&nbsp;</li><li><strong>Command + F</strong> 文件内查找</li><li><strong>Command + Shift + F</strong> 全局查找（根据路径）</li><li><strong>Command + G</strong> 查找模式下的向下查找</li><li><strong>Command + Shift + G</strong> 查找模式下的向上查找</li></ul></li><li><h4 id="使用查询"><a href="#使用查询" class="headerlink" title="使用查询"></a>使用查询</h4><ul><li><strong>Command + F7</strong> 在类中查找用法</li><li><strong>Option + F7</strong> 在文件中查找用法</li><li><strong>Command + Option + F7</strong> 浮动窗口显示用法</li><li><strong>Command + Shift + F7</strong> 在文件中突出显示用法</li></ul></li><li><h4 id="替换"><a href="#替换" class="headerlink" title="替换"></a>替换</h4><ul><li><strong>Command + R</strong> 文件内替换</li><li><strong>Command + Shift + R</strong> 全局替换（根据路径）</li></ul></li></ul><p>&nbsp;</p><h2 id="Navigate-导航"><a href="#Navigate-导航" class="headerlink" title="Navigate 导航"></a>Navigate 导航</h2><ul><li><h4 id="Command-组合键-1"><a href="#Command-组合键-1" class="headerlink" title="Command 组合键"></a>Command 组合键</h4><ul><li><strong>Command + E</strong> 显示最近打开的文件记录列表<br>&nbsp;</li><li><strong>Command + O</strong> 查找类文件</li><li><strong>Command + Shift + O</strong> 查找所有类型文件、打开文件、打开目录，打开目录需要在输入的内容前面或后面加一个反斜杠 <strong>/</strong></li><li><strong>Command + Option + O</strong> 查找指定的变量或方法</li><li><strong>Command + B / Command + 鼠标点击</strong> 进入光标所在的方法或变量的接口或定义处</li><li><strong>Command + Option + B</strong> 跳转到实现处，在某个调用的方法名上使用会跳转到具体的实现处，可以跳过接口</li><li><strong>Command + Y / Option + Space</strong> 快速打开光标所在的方法或类的定义</li><li><strong>Command + U</strong> 前往当前光标所在方法的父类方法或接口定义</li><li><strong>Command + F12</strong> 弹出当前文件结构层，可以在层上直接输入进行筛选（可用于搜索类中的方法）<br>&nbsp;</li><li><strong>Command + L</strong> 在当前文件中跳转到某一行的指定处</li><li><strong>Command + 左方向键 / 右方向键</strong> 光标跳转到当前行的最左/右侧位置</li><li><strong>Command + [ / ]</strong> 移动光标到当前所在代码的花括号的开始/结束位置<br>&nbsp;</li><li><strong>Command + Option + 左方向键 / 右方向键</strong> 退回/前进到上一个操作的地方</li><li><strong>Command + Shift + Delete</strong> 跳转到最后一个编辑的地方</li></ul></li><li><h4 id="Option-组合键-1"><a href="#Option-组合键-1" class="headerlink" title="Option 组合键"></a>Option 组合键</h4><ul><li><strong>Option + 左方向键 / 右方向键</strong> 光标跳转到当前单词的左/右侧开始位置</li><li><strong>Option + F1</strong> 显示当前文件的选择目标弹出层，弹出层中有很多目标可以进行选择，如在代码编辑窗口可以选择显示该文件的Finder（比较有用）<br>&nbsp;</li><li><strong>Option + Home（Fn+左方向键）</strong> 显示到当前文件的导航条</li></ul></li><li><h4 id="Control-组合键-1"><a href="#Control-组合键-1" class="headerlink" title="Control 组合键"></a>Control 组合键</h4><ul><li><strong>Ctrl + 左方向键 / 右方向键</strong> 左右切换打开的编辑Tab页</li><li><strong>Ctrl + 上方向键 / 下方向键</strong> 当前光标跳转到当前文件的前一个/后一个方法名的位置</li><li><strong>Ctrl + Shift + F4</strong> 关闭活动 run / messages / find / … Tab</li><li><strong>Ctrl + Shift + B</strong> 跳转到类型声明处<br>&nbsp;</li><li><strong>Ctrl + H</strong> 显示当前类的层次结构</li><li><strong>Command + Shift + H</strong> 显示方法的层次结构</li><li><strong>Ctrl + Option + H</strong> 显示方法调用的层次结构</li></ul></li><li><h4 id="书签"><a href="#书签" class="headerlink" title="书签"></a>书签</h4><ul><li><strong>F3</strong> 选中文件夹/文件/代码行，添加/取消书签</li><li><strong>Option + F3</strong> 选中文件夹/文件/代码行，使用助记符添加/取消书签</li><li><strong>Ctrl + 0 / 1 / … / 9</strong> 定位到对应数值的书签位置</li><li><strong>Command + F3</strong> 显示所有书签</li></ul></li><li><h4 id="其他-1"><a href="#其他-1" class="headerlink" title="其他"></a>其他</h4><ul><li><strong>F2 / Shift + F2</strong> 跳转到下一个/上一个突出错误或警告的位置</li><li><strong>F4 / Command + 下方向键</strong> 编辑/查看代码源</li><li><strong>F12</strong> 从代码文件编辑窗口返回到前一个工具窗口</li><li><strong>Esc</strong> 从工具窗口进入到代码文件编辑窗口</li><li><strong>Shift + Esc</strong> 隐藏当前或最后一个活动窗口，且光标进入代码文件编辑窗口</li></ul></li></ul><p>&nbsp;</p><h2 id="Code-代码"><a href="#Code-代码" class="headerlink" title="Code 代码"></a>Code 代码</h2><p>&nbsp;</p><h2 id="Refactor-重构"><a href="#Refactor-重构" class="headerlink" title="Refactor 重构"></a>Refactor 重构</h2><ul><li><strong>F5</strong> 复制文件到指定目录</li><li><strong>F6</strong> 移动文件到指定目录</li><li><strong>Command + Delete</strong> 在文件上为安全删除文件，弹出确认框</li><li><strong>Shift + F6</strong> 重命名文件</li><li><strong>Command + F6</strong> 更改签名</li><li><strong>Command + Option + N</strong> 一致性</li><li><strong>Command + Option + M</strong> 将选中的代码提取为方法</li><li><strong>Command + Option + V</strong> 将选中的代码提取为变量</li><li><strong>Command + Option + F</strong> 将选中的代码提取为字段</li><li><strong>Command + Option + C</strong> 将选中的代码提取为常量</li><li><strong>Command + Option + P</strong> 将选中的代码提取为参数</li></ul><p>&nbsp;</p><h2 id="Build-and-Run-编译与运行"><a href="#Build-and-Run-编译与运行" class="headerlink" title="Build and Run 编译与运行"></a>Build and Run 编译与运行</h2><ul><li><strong>Command + F9</strong> 编译Project</li><li><strong>Command + Shift + F9</strong> 编译选择的文件、包或模块</li><li><strong>Ctrl + Option + R</strong> 弹出Run的可选择菜单</li><li><strong>Ctrl + Option + D</strong> 弹出Debug的可选择菜单</li><li><strong>Ctrl + R</strong> 运行Run</li><li><strong>Ctrl + D</strong> 调试Debug</li><li><strong>Ctrl + Shift + R / D</strong> 从编辑器运行上下文环境配置</li></ul><p>&nbsp;</p><h2 id="Debug-调试"><a href="#Debug-调试" class="headerlink" title="Debug 调试"></a>Debug 调试</h2><ul><li><strong>F7</strong> 进入下一步，如果当前行断点是一个方法，则进入当前方法体内，如果该方法体还有方法，则不会进入该内嵌的方法中</li><li><strong>F8</strong> 进过下一步，如果当前行断点是一个方法，则不进入当前方法体内</li><li><strong>Shift + F7</strong> 智能步入，如果断点所在行上有多个方法调用，则会弹出选择进入哪个方法</li><li><strong>Shift + F8</strong> 跳出</li><li><strong>Shift + Option + F7</strong> 强制步入</li><li><strong>Shift + Option + F8</strong> 强制步过</li><li><strong>Option + F9</strong> 运行至光标处，如果光标前有其他断点则会进入到断点</li><li><strong>Command + Option + R</strong> 恢复程序运行，如果该断点下面的代码还有断点，则停在下一个断点上<br>&nbsp;</li><li><strong>Command + F8</strong> 设置或取消断点</li><li><strong>Option + F8</strong> 查看对象，计算表达式，可以更改变量值使其生效</li><li><strong>Command + Shift + F8</strong> 查看断点或指定断点条件</li><li><strong>Drop Frame</strong> 让过掉的断点重来</li></ul><p>&nbsp;</p><h2 id="VCS-版本控制"><a href="#VCS-版本控制" class="headerlink" title="VCS 版本控制"></a>VCS 版本控制</h2><ul><li><strong>Command + K</strong> 提交代码到版本控制器</li><li><strong>Command + T</strong> 从版本控制器更新代码</li><li><strong>Ctrl + V</strong> 快速弹出版本控制器操作面板</li><li><strong>Option + Shift + C</strong> 查看最近的变更记录</li></ul><p>&nbsp;</p><h2 id="Live-Templates-动态代码模板"><a href="#Live-Templates-动态代码模板" class="headerlink" title="Live Templates 动态代码模板"></a>Live Templates 动态代码模板</h2><ul><li><strong>Command + Option + J</strong> 弹出模板选择窗口，将选定的代码使用动态模板包住</li><li><strong>Command + J</strong> 插入自定义动态代码模板</li></ul><p>&nbsp;</p><h2 id="General-通用"><a href="#General-通用" class="headerlink" title="General 通用"></a>General 通用</h2><ul><li><strong>Command + S</strong> 保存所有</li><li><strong>Command + ,</strong> 打开IDEA系统设置</li><li><strong>Command + ;</strong> 打开项目结构对话框</li><li><strong>Command + 1 … Command + 0</strong> 打开相应编号的工具窗口</li><li><strong>Command + Shift + F12</strong> 切换最大化编辑器</li><li><strong>Command + Ctrl + F</strong> 切换全屏模式<br>&nbsp;</li><li><strong>Command + Option + Y</strong> 同步、刷新项目</li><li><strong>Command + Shift + A</strong> 查找动作（可设置相关选项）</li><li><strong>Option + Shift + F</strong> 添加到收藏夹</li><li><strong>Option + Shift + I</strong> 检查当前文件与当前的配置文件的错误或警告<br>&nbsp;</li><li><strong>Ctrl + `</strong> 快速切换当前的 Scheme（切换主题、代码样式等）</li><li><strong>Ctrl + Shift + Tab</strong> 编辑窗口标签和工具窗口之间切换（如果在切换过程加按上 Delete ，则是关闭对应选中的窗口）</li></ul>]]></content>
     
