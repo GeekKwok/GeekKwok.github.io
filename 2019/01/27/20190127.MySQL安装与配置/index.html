@@ -100,18 +100,18 @@
 
 
 
-  <meta name="description" content="vsftpd简介vsftpd是”very secure FTP daemon”的缩写，是一个完全免费的、开放源代码的ftp服务器软件。 vsftpd安装1.安装1yum -y install vsftpd 2.创建虚拟用户(1) 选择在根或用户目录下创建ftp文件夹：sudo mkdir /ftpfile (2) 添加匿名用户：useradd ftpuser -d /ftpfile -s /sbi">
-<meta name="keywords" content="Linux,vsftpd">
+  <meta name="description" content="一、MySQL 简介 简介MySQL 是一个关系型数据库管理系统，由瑞典 MySQL AB 公司开发，目前属于 Oracle 旗下产品。  特点MySQL 所使用的 SQL 语言是用于访问数据库的最常用标准化语言， MySQL 软件采用了双授权政策，分为社区版和商业版，由于其体积小、速度快、总体拥有成本低，尤其是开放源码这一特点，一般中小型网站的开发都选择 MySQL 作为网站数据库。   二、M">
+<meta name="keywords" content="Linux,MySQL">
 <meta property="og:type" content="article">
-<meta property="og:title" content="vsftpd安装与配置">
-<meta property="og:url" content="http://blog.geekkwok.com/2019/01/24/20190124.vsftpd安装与配置/index.html">
+<meta property="og:title" content="MySQL安装与配置">
+<meta property="og:url" content="http://blog.geekkwok.com/2019/01/27/20190127.MySQL安装与配置/index.html">
 <meta property="og:site_name" content="Geek.Kwok Blog">
-<meta property="og:description" content="vsftpd简介vsftpd是”very secure FTP daemon”的缩写，是一个完全免费的、开放源代码的ftp服务器软件。 vsftpd安装1.安装1yum -y install vsftpd 2.创建虚拟用户(1) 选择在根或用户目录下创建ftp文件夹：sudo mkdir /ftpfile (2) 添加匿名用户：useradd ftpuser -d /ftpfile -s /sbi">
+<meta property="og:description" content="一、MySQL 简介 简介MySQL 是一个关系型数据库管理系统，由瑞典 MySQL AB 公司开发，目前属于 Oracle 旗下产品。  特点MySQL 所使用的 SQL 语言是用于访问数据库的最常用标准化语言， MySQL 软件采用了双授权政策，分为社区版和商业版，由于其体积小、速度快、总体拥有成本低，尤其是开放源码这一特点，一般中小型网站的开发都选择 MySQL 作为网站数据库。   二、M">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-03-01T13:30:01.525Z">
+<meta property="og:updated_time" content="2019-03-02T15:18:04.334Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="vsftpd安装与配置">
-<meta name="twitter:description" content="vsftpd简介vsftpd是”very secure FTP daemon”的缩写，是一个完全免费的、开放源代码的ftp服务器软件。 vsftpd安装1.安装1yum -y install vsftpd 2.创建虚拟用户(1) 选择在根或用户目录下创建ftp文件夹：sudo mkdir /ftpfile (2) 添加匿名用户：useradd ftpuser -d /ftpfile -s /sbi">
+<meta name="twitter:title" content="MySQL安装与配置">
+<meta name="twitter:description" content="一、MySQL 简介 简介MySQL 是一个关系型数据库管理系统，由瑞典 MySQL AB 公司开发，目前属于 Oracle 旗下产品。  特点MySQL 所使用的 SQL 语言是用于访问数据库的最常用标准化语言， MySQL 软件采用了双授权政策，分为社区版和商业版，由于其体积小、速度快、总体拥有成本低，尤其是开放源码这一特点，一般中小型网站的开发都选择 MySQL 作为网站数据库。   二、M">
 
 
 
@@ -120,7 +120,7 @@
 
 
 
-  <link rel="canonical" href="http://blog.geekkwok.com/2019/01/24/20190124.vsftpd安装与配置/">
+  <link rel="canonical" href="http://blog.geekkwok.com/2019/01/27/20190127.MySQL安装与配置/">
 
 
 
@@ -130,7 +130,7 @@
   };
 </script>
 
-  <title>vsftpd安装与配置 | Geek.Kwok Blog</title>
+  <title>MySQL安装与配置 | Geek.Kwok Blog</title>
   
 
 
@@ -329,7 +329,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.geekkwok.com/2019/01/24/20190124.vsftpd安装与配置/">
+    <link itemprop="mainEntityOfPage" href="http://blog.geekkwok.com/2019/01/27/20190127.MySQL安装与配置/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Geek.Kwok">
@@ -346,7 +346,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">vsftpd安装与配置
+          <h1 class="post-title" itemprop="name headline">MySQL安装与配置
 
               
             
@@ -372,7 +372,7 @@
                 
               
 
-              <time title="创建时间：2019-01-24 00:30:00" itemprop="dateCreated datePublished" datetime="2019-01-24T00:30:00+08:00">2019-01-24</time>
+              <time title="创建时间：2019-01-27 00:30:00" itemprop="dateCreated datePublished" datetime="2019-01-27T00:30:00+08:00">2019-01-27</time>
             
 
             
@@ -389,7 +389,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-03-01 21:30:01" itemprop="dateModified" datetime="2019-03-01T21:30:01+08:00">2019-03-01</time>
+                <time title="修改时间：2019-03-02 23:18:04" itemprop="dateModified" datetime="2019-03-02T23:18:04+08:00">2019-03-02</time>
               
             
           </span>
@@ -441,19 +441,56 @@
       
 
       
-        <h3 id="vsftpd简介"><a href="#vsftpd简介" class="headerlink" title="vsftpd简介"></a>vsftpd简介</h3><p>vsftpd是”very secure FTP daemon”的缩写，是一个完全免费的、开放源代码的ftp服务器软件。</p>
-<h3 id="vsftpd安装"><a href="#vsftpd安装" class="headerlink" title="vsftpd安装"></a>vsftpd安装</h3><h4 id="1-安装"><a href="#1-安装" class="headerlink" title="1.安装"></a>1.安装</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y install vsftpd</span><br></pre></td></tr></table></figure>
-<h4 id="2-创建虚拟用户"><a href="#2-创建虚拟用户" class="headerlink" title="2.创建虚拟用户"></a>2.创建虚拟用户</h4><p>(1) 选择在根或用户目录下创建ftp文件夹：sudo mkdir /ftpfile</p>
-<p>(2) 添加匿名用户：useradd ftpuser -d /ftpfile -s /sbin/nologin</p>
-<p>(3) 修改ftpfile权限：chown -R ftpuser.ftpuser /ftpfile</p>
-<p>(4) 重设ftpuser密码：passwd ftpuser</p>
-<h4 id="3-配置"><a href="#3-配置" class="headerlink" title="3.配置"></a>3.配置</h4><p>(1) cd /etc/vsftpd</p>
-<p>(2) sudo vim chroot_list</p>
-<p>(3) 把刚才新增的虚拟用户添加到此配置文件中，后续要引用</p>
-<p>(4) :wq保存退出</p>
-<p>(5) sudo vim /etc/selinux/config, 修改为SELINUX=disabled, :wq保存退出</p>
-<p>(6) sudo vim /etc/vsftpd/vsftpd.conf</p>
-<h4 id="4-防火墙设置"><a href="#4-防火墙设置" class="headerlink" title="4.防火墙设置"></a>4.防火墙设置</h4><h3 id="vsftpd验证"><a href="#vsftpd验证" class="headerlink" title="vsftpd验证"></a>vsftpd验证</h3><h3 id="vsftpd常用命令"><a href="#vsftpd常用命令" class="headerlink" title="vsftpd常用命令"></a>vsftpd常用命令</h3>
+        <h3 id="一、MySQL-简介"><a href="#一、MySQL-简介" class="headerlink" title="一、MySQL 简介"></a>一、MySQL 简介</h3><ul>
+<li><h4 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h4><p>MySQL 是一个关系型数据库管理系统，由瑞典 MySQL AB 公司开发，目前属于 Oracle 旗下产品。</p>
+</li>
+<li><h4 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h4><p>MySQL 所使用的 SQL 语言是用于访问数据库的最常用标准化语言， MySQL 软件采用了双授权政策，分为社区版和商业版，由于其体积小、速度快、总体拥有成本低，尤其是开放源码这一特点，一般中小型网站的开发都选择 MySQL 作为网站数据库。</p>
+</li>
+</ul>
+<h3 id="二、MySQL安装"><a href="#二、MySQL安装" class="headerlink" title="二、MySQL安装"></a>二、MySQL安装</h3><ul>
+<li><p>1.安装</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sudo yum -y install mysql-server</span><br><span class="line"></span><br><span class="line">rpm -qa | grep mysql-server <span class="comment"># 可通过这个命令检查是否已经安装了mysql-server</span></span><br><span class="line"></span><br><span class="line">默认配置文件 /etc/my.cnf</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>2.字符集配置</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/my.cnf</span><br><span class="line"></span><br><span class="line">在[mysqld]节点下添加配置：</span><br><span class="line">default-character-set=utf8</span><br><span class="line">character-set-server=utf8</span><br><span class="line"></span><br><span class="line">:wq 保存退出</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>3.MySQL自启动</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">chkconfig mysqld on</span><br><span class="line"></span><br><span class="line">chkconfig --list mysqld <span class="comment"># 查看如果2~5位启用on状态即OK</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>4.防火墙设置</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/sysconfig/iptables</span><br><span class="line"></span><br><span class="line">-A INPUT -p tcp -m tcp --dport 3306 -j ACCEPT</span><br><span class="line">将以上配置添加到防火墙配置中</span><br><span class="line"></span><br><span class="line">:wq 保存退出</span><br><span class="line"></span><br><span class="line">sudo service iptables restart <span class="comment"># 重启防火墙</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="三、MySQL服务启动"><a href="#三、MySQL服务启动" class="headerlink" title="三、MySQL服务启动"></a>三、MySQL服务启动</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo service mysqld start 或 sudo /etc/rc.d/init.d/mysqld start</span><br></pre></td></tr></table></figure>
+<h3 id="四、MySQL-内部配置"><a href="#四、MySQL-内部配置" class="headerlink" title="四、MySQL 内部配置"></a>四、MySQL 内部配置</h3><p>因为还未设置密码，执行 <code>mysql -u root</code> 登录 MySQL 服务器。</p>
+<ul>
+<li><p>1.用户配置</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">查看目前 MySQL 的用户：</span><br><span class="line">select user, host, password from mysql.user;</span><br><span class="line"></span><br><span class="line">修改 root 密码：</span><br><span class="line"><span class="built_in">set</span> password <span class="keyword">for</span> root@localhost=password(<span class="string">'your password'</span>);</span><br><span class="line"><span class="built_in">set</span> password <span class="keyword">for</span> root@127.0.0.1=password(<span class="string">'your password'</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">exit</span> 退出 MySQL</span><br><span class="line"></span><br><span class="line">重新登录 MySQL 输入：</span><br><span class="line">mysql -u root -p</span><br><span class="line">输入密码登录成功</span><br><span class="line"></span><br><span class="line">删除匿名用户，执行以下 SQL：</span><br><span class="line">select user, host from mysql.user; <span class="comment"># 查看是否有匿名用户</span></span><br><span class="line">delete from mysql.user <span class="built_in">where</span> user=<span class="string">''</span>; <span class="comment"># 删除匿名用户</span></span><br><span class="line">select user, host from mysql.user; <span class="comment"># 再次查看</span></span><br><span class="line">flush privileges; <span class="comment"># 刷新使以上操作生效</span></span><br><span class="line"></span><br><span class="line">插入 MySQL 新用户：</span><br><span class="line">insert into mysql.user(host, user, password) values (<span class="string">'localhost'</span>, <span class="string">'your username'</span>, password(<span class="string">'your password'</span>));</span><br><span class="line">flush privileges; <span class="comment"># 使操作生效</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>2.权限配置</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">本地用户赋予所有权限：</span><br><span class="line">grant all privileges on mmall.* to yourusername@localhost identified by <span class="string">'your password'</span>;</span><br><span class="line"></span><br><span class="line">给账号开通外网所有权限：</span><br><span class="line">grant all privileges on mmall.* to yourusername@<span class="string">'%'</span> identified by <span class="string">'your password'</span>;</span><br><span class="line">注：根据自己实际情况决定是否开什么权限，如</span><br><span class="line">grant select, insert, update on mmall.* to yourusername@<span class="string">'192.11.1.1'</span> identified by <span class="string">'your password'</span>;</span><br><span class="line">代表只开通增、改、查给指定的账号并也指定 IP 地址</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>3.新建 database</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">create database `mmall` default character <span class="built_in">set</span> utf8 collate utf8_general_ci;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="五、MySQL-验证"><a href="#五、MySQL-验证" class="headerlink" title="五、MySQL 验证"></a>五、MySQL 验证</h3><ul>
+<li><p>1.执行 ifconfig 查看运行 MySQL 服务器的 IP 地址</p>
+</li>
+<li><p>2.通过 MySQL 客户端工具（如 navicat ）进行连接</p>
+</li>
+<li><p>3.新建连接</p>
+</li>
+<li><p>4.测试连接 Test Connection</p>
+</li>
+<li><p>5.进入该数据库</p>
+</li>
+</ul>
+<h3 id="六、MySQL-常用命令"><a href="#六、MySQL-常用命令" class="headerlink" title="六、MySQL 常用命令"></a>六、MySQL 常用命令</h3><p>启动：sudo service mysqld start</p>
+<p>关闭：sudo service mysqld stop</p>
+<p>重启：sudo service mysqld restart</p>
+<p>登录：mysql -u username -p</p>
+
       
     </div>
 
@@ -478,7 +515,7 @@
           
             <a href="/tags/Linux/" rel="tag"># Linux</a>
           
-            <a href="/tags/vsftpd/" rel="tag"># vsftpd</a>
+            <a href="/tags/MySQL/" rel="tag"># MySQL</a>
           
         </div>
       
@@ -491,8 +528,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/01/24/20190125.Nginx安装与配置/" rel="next" title="Nginx安装与配置">
-                <i class="fa fa-chevron-left"></i> Nginx安装与配置
+              <a href="/2019/01/26/20190126.Nginx搭配vsftpd搭建文件服务器/" rel="next" title="Nginx搭配vsftpd搭建文件服务器">
+                <i class="fa fa-chevron-left"></i> Nginx搭配vsftpd搭建文件服务器
               </a>
             
           </div>
@@ -500,10 +537,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/01/26/20190126.Nginx搭配vsftpd搭建文件服务器/" rel="prev" title="Nginx搭配vsftpd搭建文件服务器">
-                Nginx搭配vsftpd搭建文件服务器 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -696,7 +729,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#vsftpd简介"><span class="nav-number">1.</span> <span class="nav-text">vsftpd简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#vsftpd安装"><span class="nav-number">2.</span> <span class="nav-text">vsftpd安装</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-安装"><span class="nav-number">2.1.</span> <span class="nav-text">1.安装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-创建虚拟用户"><span class="nav-number">2.2.</span> <span class="nav-text">2.创建虚拟用户</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-配置"><span class="nav-number">2.3.</span> <span class="nav-text">3.配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-防火墙设置"><span class="nav-number">2.4.</span> <span class="nav-text">4.防火墙设置</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#vsftpd验证"><span class="nav-number">3.</span> <span class="nav-text">vsftpd验证</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#vsftpd常用命令"><span class="nav-number">4.</span> <span class="nav-text">vsftpd常用命令</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、MySQL-简介"><span class="nav-number">1.</span> <span class="nav-text">一、MySQL 简介</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#简介"><span class="nav-number">1.1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#特点"><span class="nav-number">1.2.</span> <span class="nav-text">特点</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、MySQL安装"><span class="nav-number">2.</span> <span class="nav-text">二、MySQL安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、MySQL服务启动"><span class="nav-number">3.</span> <span class="nav-text">三、MySQL服务启动</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四、MySQL-内部配置"><span class="nav-number">4.</span> <span class="nav-text">四、MySQL 内部配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#五、MySQL-验证"><span class="nav-number">5.</span> <span class="nav-text">五、MySQL 验证</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#六、MySQL-常用命令"><span class="nav-number">6.</span> <span class="nav-text">六、MySQL 常用命令</span></a></li></ol></div>
             
 
           </div>
