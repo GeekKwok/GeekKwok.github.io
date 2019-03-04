@@ -94,38 +94,11 @@
     
       <category term="Linux" scheme="http://blog.geekkwok.com/tags/Linux/"/>
     
-      <category term="vsftpd" scheme="http://blog.geekkwok.com/tags/vsftpd/"/>
-    
       <category term="Nginx" scheme="http://blog.geekkwok.com/tags/Nginx/"/>
     
-      <category term="文件服务器" scheme="http://blog.geekkwok.com/tags/%E6%96%87%E4%BB%B6%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>vsftpd安装与配置</title>
-    <link href="http://blog.geekkwok.com/2019/01/24/20190124.vsftpd%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/"/>
-    <id>http://blog.geekkwok.com/2019/01/24/20190124.vsftpd安装与配置/</id>
-    <published>2019-01-23T16:30:00.000Z</published>
-    <updated>2019-03-01T13:30:01.525Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="vsftpd简介"><a href="#vsftpd简介" class="headerlink" title="vsftpd简介"></a>vsftpd简介</h3><p>vsftpd是”very secure FTP daemon”的缩写，是一个完全免费的、开放源代码的ftp服务器软件。</p><h3 id="vsftpd安装"><a href="#vsftpd安装" class="headerlink" title="vsftpd安装"></a>vsftpd安装</h3><h4 id="1-安装"><a href="#1-安装" class="headerlink" title="1.安装"></a>1.安装</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y install vsftpd</span><br></pre></td></tr></table></figure><h4 id="2-创建虚拟用户"><a href="#2-创建虚拟用户" class="headerlink" title="2.创建虚拟用户"></a>2.创建虚拟用户</h4><p>(1) 选择在根或用户目录下创建ftp文件夹：sudo mkdir /ftpfile</p><p>(2) 添加匿名用户：useradd ftpuser -d /ftpfile -s /sbin/nologin</p><p>(3) 修改ftpfile权限：chown -R ftpuser.ftpuser /ftpfile</p><p>(4) 重设ftpuser密码：passwd ftpuser</p><h4 id="3-配置"><a href="#3-配置" class="headerlink" title="3.配置"></a>3.配置</h4><p>(1) cd /etc/vsftpd</p><p>(2) sudo vim chroot_list</p><p>(3) 把刚才新增的虚拟用户添加到此配置文件中，后续要引用</p><p>(4) :wq保存退出</p><p>(5) sudo vim /etc/selinux/config, 修改为SELINUX=disabled, :wq保存退出</p><p>(6) sudo vim /etc/vsftpd/vsftpd.conf</p><h4 id="4-防火墙设置"><a href="#4-防火墙设置" class="headerlink" title="4.防火墙设置"></a>4.防火墙设置</h4><h3 id="vsftpd验证"><a href="#vsftpd验证" class="headerlink" title="vsftpd验证"></a>vsftpd验证</h3><h3 id="vsftpd常用命令"><a href="#vsftpd常用命令" class="headerlink" title="vsftpd常用命令"></a>vsftpd常用命令</h3>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h3 id=&quot;vsftpd简介&quot;&gt;&lt;a href=&quot;#vsftpd简介&quot; class=&quot;headerlink&quot; title=&quot;vsftpd简介&quot;&gt;&lt;/a&gt;vsftpd简介&lt;/h3&gt;&lt;p&gt;vsftpd是”very secure FTP daemon”的缩写，是一个完全免费的、开放
-      
-    
-    </summary>
-    
-      <category term="Development" scheme="http://blog.geekkwok.com/categories/Development/"/>
-    
-    
-      <category term="Linux" scheme="http://blog.geekkwok.com/tags/Linux/"/>
-    
       <category term="vsftpd" scheme="http://blog.geekkwok.com/tags/vsftpd/"/>
+    
+      <category term="文件服务器" scheme="http://blog.geekkwok.com/tags/%E6%96%87%E4%BB%B6%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
     
   </entry>
   
@@ -155,6 +128,33 @@
       <category term="Linux" scheme="http://blog.geekkwok.com/tags/Linux/"/>
     
       <category term="Nginx" scheme="http://blog.geekkwok.com/tags/Nginx/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>vsftpd安装与配置</title>
+    <link href="http://blog.geekkwok.com/2019/01/24/20190124.vsftpd%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/"/>
+    <id>http://blog.geekkwok.com/2019/01/24/20190124.vsftpd安装与配置/</id>
+    <published>2019-01-23T16:30:00.000Z</published>
+    <updated>2019-03-01T13:30:01.525Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="vsftpd简介"><a href="#vsftpd简介" class="headerlink" title="vsftpd简介"></a>vsftpd简介</h3><p>vsftpd是”very secure FTP daemon”的缩写，是一个完全免费的、开放源代码的ftp服务器软件。</p><h3 id="vsftpd安装"><a href="#vsftpd安装" class="headerlink" title="vsftpd安装"></a>vsftpd安装</h3><h4 id="1-安装"><a href="#1-安装" class="headerlink" title="1.安装"></a>1.安装</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y install vsftpd</span><br></pre></td></tr></table></figure><h4 id="2-创建虚拟用户"><a href="#2-创建虚拟用户" class="headerlink" title="2.创建虚拟用户"></a>2.创建虚拟用户</h4><p>(1) 选择在根或用户目录下创建ftp文件夹：sudo mkdir /ftpfile</p><p>(2) 添加匿名用户：useradd ftpuser -d /ftpfile -s /sbin/nologin</p><p>(3) 修改ftpfile权限：chown -R ftpuser.ftpuser /ftpfile</p><p>(4) 重设ftpuser密码：passwd ftpuser</p><h4 id="3-配置"><a href="#3-配置" class="headerlink" title="3.配置"></a>3.配置</h4><p>(1) cd /etc/vsftpd</p><p>(2) sudo vim chroot_list</p><p>(3) 把刚才新增的虚拟用户添加到此配置文件中，后续要引用</p><p>(4) :wq保存退出</p><p>(5) sudo vim /etc/selinux/config, 修改为SELINUX=disabled, :wq保存退出</p><p>(6) sudo vim /etc/vsftpd/vsftpd.conf</p><h4 id="4-防火墙设置"><a href="#4-防火墙设置" class="headerlink" title="4.防火墙设置"></a>4.防火墙设置</h4><h3 id="vsftpd验证"><a href="#vsftpd验证" class="headerlink" title="vsftpd验证"></a>vsftpd验证</h3><h3 id="vsftpd常用命令"><a href="#vsftpd常用命令" class="headerlink" title="vsftpd常用命令"></a>vsftpd常用命令</h3>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;vsftpd简介&quot;&gt;&lt;a href=&quot;#vsftpd简介&quot; class=&quot;headerlink&quot; title=&quot;vsftpd简介&quot;&gt;&lt;/a&gt;vsftpd简介&lt;/h3&gt;&lt;p&gt;vsftpd是”very secure FTP daemon”的缩写，是一个完全免费的、开放
+      
+    
+    </summary>
+    
+      <category term="Development" scheme="http://blog.geekkwok.com/categories/Development/"/>
+    
+    
+      <category term="Linux" scheme="http://blog.geekkwok.com/tags/Linux/"/>
+    
+      <category term="vsftpd" scheme="http://blog.geekkwok.com/tags/vsftpd/"/>
     
   </entry>
   
