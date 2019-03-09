@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link rel="stylesheet" href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5">
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=6.7.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.7.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.7.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.7.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="一、云服务器申请与配置1.申请云服务器(1) 访问阿里云：http://www.aliyun.com (2) 首页：产品 - 云计算基础 - 云服务器 ECS (3) 立即购买，选择”自定义购买” 第一步：基础配置(必填)  计费方式：包年包月 地域：华东2 上海可用区A 实例：规格 ecs.xn4.small 1 台 镜像：公共镜像 CentOS 7.3 64位 存储：高效云盘 20 GB  第">
+<meta name="keywords" content="Linux,云服务器部署,自动化发布">
+<meta property="og:type" content="article">
+<meta property="og:title" content="云服务器部署与自动化发布">
+<meta property="og:url" content="http://blog.geekkwok.com/2019/01/29/20190129.云服务器部署与自动化发布/index.html">
+<meta property="og:site_name" content="Geek.Kwok Blog">
+<meta property="og:description" content="一、云服务器申请与配置1.申请云服务器(1) 访问阿里云：http://www.aliyun.com (2) 首页：产品 - 云计算基础 - 云服务器 ECS (3) 立即购买，选择”自定义购买” 第一步：基础配置(必填)  计费方式：包年包月 地域：华东2 上海可用区A 实例：规格 ecs.xn4.small 1 台 镜像：公共镜像 CentOS 7.3 64位 存储：高效云盘 20 GB  第">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-03-09T03:25:47.005Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="云服务器部署与自动化发布">
+<meta name="twitter:description" content="一、云服务器申请与配置1.申请云服务器(1) 访问阿里云：http://www.aliyun.com (2) 首页：产品 - 云计算基础 - 云服务器 ECS (3) 立即购买，选择”自定义购买” 第一步：基础配置(必填)  计费方式：包年包月 地域：华东2 上海可用区A 实例：规格 ecs.xn4.small 1 台 镜像：公共镜像 CentOS 7.3 64位 存储：高效云盘 20 GB  第">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Geek.Kwok Blog" type="application/atom+xml">
+
+
+
+
+  <link rel="canonical" href="http://blog.geekkwok.com/2019/01/29/20190129.云服务器部署与自动化发布/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>云服务器部署与自动化发布 | Geek.Kwok Blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Geek.Kwok Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.geekkwok.com/2019/01/29/20190129.云服务器部署与自动化发布/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Geek.Kwok">
+      <meta itemprop="description" content="Keep learning and create wonderful life!">
+      <meta itemprop="image" content="/images/geekkwok-avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Geek.Kwok Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">云服务器部署与自动化发布
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-01-29 00:30:00" itemprop="dateCreated datePublished" datetime="2019-01-29T00:30:00+08:00">2019-01-29</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-03-09 11:25:47" itemprop="dateModified" datetime="2019-03-09T11:25:47+08:00">2019-03-09</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Development/" itemprop="url" rel="index"><span itemprop="name">Development</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="一、云服务器申请与配置"><a href="#一、云服务器申请与配置" class="headerlink" title="一、云服务器申请与配置"></a>一、云服务器申请与配置</h3><h4 id="1-申请云服务器"><a href="#1-申请云服务器" class="headerlink" title="1.申请云服务器"></a>1.申请云服务器</h4><p>(1) 访问阿里云：<a href="http://www.aliyun.com" target="_blank" rel="noopener">http://www.aliyun.com</a></p>
+<p>(2) 首页：产品 - 云计算基础 - 云服务器 ECS</p>
+<p>(3) 立即购买，选择”自定义购买”</p>
+<p>第一步：基础配置(必填)</p>
+<ul>
+<li>计费方式：包年包月</li>
+<li>地域：华东2 上海可用区A</li>
+<li>实例：规格 ecs.xn4.small 1 台</li>
+<li>镜像：公共镜像 CentOS 7.3 64位</li>
+<li>存储：高效云盘 20 GB</li>
+</ul>
+<p>第二步：网络和安全组(必填)</p>
+<ul>
+<li>网络：默认 vpc-uf6v0498wl9f107bk1dwy</li>
+<li>公网带宽：按固定带宽 1 MB</li>
+<li>安全组：默认 geekkwok_security_group / sg-uf6d8weeyhtxpbmfi23f</li>
+</ul>
+<p>第三步：系统配置</p>
+<ul>
+<li>登录凭证：自定义密码，输入密码xxxx</li>
+<li>实例名称：geekkwok2</li>
+<li>主机名：geekkwok.ecs.2</li>
+</ul>
+<p>第四步：分组设置</p>
+<p>第五步：确认订单(必填)</p>
+<ul>
+<li>所选配置：确认配置信息</li>
+<li>购买时长：1个月</li>
+<li>服务协议：勾选</li>
+<li>确认下单：点击确定购买</li>
+</ul>
+<h4 id="2-云服务器配置"><a href="#2-云服务器配置" class="headerlink" title="2.云服务器配置"></a>2.云服务器配置</h4><p>(1) 管理控制台 - 云服务器 ECS - 实例，看到新购买的服务器</p>
+<p>(2) 拷贝公网 ip 并 ssh 登录<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ssh root@101.132.132.212</span><br><span class="line">yes</span><br><span class="line">输入密码xxxx以登录服务器</span><br></pre></td></tr></table></figure></p>
+<h3 id="二、域名申请、备案与配置"><a href="#二、域名申请、备案与配置" class="headerlink" title="二、域名申请、备案与配置"></a>二、域名申请、备案与配置</h3><h4 id="1-域名申请"><a href="#1-域名申请" class="headerlink" title="1.域名申请"></a>1.域名申请</h4><p>(1) 管理控制台 - 左侧菜单选择”域名” - 域名注册，跳转到域名购买页</p>
+<p>(2) 搜索域名 - 加入清单 - 立即结算，进入到域名购买结算页，选择所有者类型，并点击”立即购买”来完成购买</p>
+<p>(3) 对域名进行实名认证</p>
+<h4 id="2-域名备案"><a href="#2-域名备案" class="headerlink" title="2.域名备案"></a>2.域名备案</h4><p>(1) 备案 - 备案管理”备案服务号申请” - 点击”申请”并确定</p>
+<p>(2) 备案管理”备案服务号管理” - 点击”去备案”</p>
+<p>(3) 进入备案系统，备案流程：进入备案系统 - 填写信息提交初审 - 上传备案资料 - 管局审核 - 备案成功</p>
+<h4 id="3-域名绑定配置"><a href="#3-域名绑定配置" class="headerlink" title="3.域名绑定配置"></a>3.域名绑定配置</h4><p>(1) 管理控制台 - 左侧菜单选择”域名” - 找到对应的域名并点击”解析”</p>
+<p>(2) 点击右上方”添加记录”，填写对应信息并点击确定</p>
+<ul>
+<li>记录类型：A</li>
+<li>主机记录：二级域名，如 mall</li>
+<li>解析路线：默认</li>
+<li>记录值：ECS 服务器公网 IP，如 101.132.132.212</li>
+<li>TTL：默认，如 10 分钟</li>
+</ul>
+<h3 id="三、云服务器源配置"><a href="#三、云服务器源配置" class="headerlink" title="三、云服务器源配置"></a>三、云服务器源配置</h3><h4 id="1-登录-ECS"><a href="#1-登录-ECS" class="headerlink" title="1.登录 ECS"></a>1.登录 ECS</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ssh root@101.132.132.212</span><br><span class="line">输入密码xxxx并登录 ECS</span><br></pre></td></tr></table></figure>
+<h4 id="2-备份原源"><a href="#2-备份原源" class="headerlink" title="2.备份原源"></a>2.备份原源</h4><p>访问 <a href="https://opsx.alibaba.com/mirror" target="_blank" rel="noopener">https://opsx.alibaba.com/mirror</a> 找到 centos 并点击 help<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.backup</span><br></pre></td></tr></table></figure></p>
+<h4 id="3-下载新源"><a href="#3-下载新源" class="headerlink" title="3.下载新源"></a>3.下载新源</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo</span><br></pre></td></tr></table></figure>
+<h4 id="4-运行缓存"><a href="#4-运行缓存" class="headerlink" title="4.运行缓存"></a>4.运行缓存</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum makecache</span><br></pre></td></tr></table></figure>
+<h3 id="四、线上环境配置"><a href="#四、线上环境配置" class="headerlink" title="四、线上环境配置"></a>四、线上环境配置</h3><h4 id="0-创建带有sudo权限的新用户"><a href="#0-创建带有sudo权限的新用户" class="headerlink" title="0.创建带有sudo权限的新用户"></a>0.创建带有sudo权限的新用户</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">useradd -d /usr/geekkwok -m geekkwok</span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> /usr/geekkwok</span><br><span class="line"></span><br><span class="line">passwd geekkwok</span><br><span class="line">输入geekkwok的密码</span><br><span class="line"></span><br><span class="line"><span class="comment"># 赋予geekkwok用户sudo权限</span></span><br><span class="line">sudo vim /etc/sudoers</span><br><span class="line">找到 root 并在下一行输入 <span class="string">"geekkwok    ALL=(ALL)    ALL"</span> 并 :wq! 保存退出</span><br><span class="line"><span class="built_in">exit</span> 退出 ssh 并重新以 geekkwok 用户登录系统</span><br></pre></td></tr></table></figure>
+<h4 id="1-JDK"><a href="#1-JDK" class="headerlink" title="1.JDK"></a>1.JDK</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看系统是否已安装 JDK (发现已经安装openjdk)</span></span><br><span class="line">rpm -qa | grep jdk</span><br><span class="line"><span class="comment"># 删除已安装 JDK</span></span><br><span class="line">sudo yum remove java-1.7.0-openjdk-headless-1.7.0.151-2.6.11.1.el7_4.x86_64 java-1.7.0-openjdk-1.7.0.151-2.6.11.1.el7_4.x86_64 java-1.7.0-openjdk-devel-1.7.0.151-2.6.11.1.el7_4.x86_64 copy-jdk-configs-2.2-3.el7.noarch</span><br><span class="line"><span class="comment"># 安装指定版本 JDK</span></span><br><span class="line"><span class="built_in">cd</span> ~</span><br><span class="line">mkdir developer</span><br><span class="line"><span class="built_in">cd</span> developer</span><br><span class="line">wget http://learning.happymmall.com/jdk/jdk-7u80-linux-x64.rpm</span><br><span class="line"></span><br><span class="line">sudo mkdir /developer</span><br><span class="line">输入密码</span><br><span class="line"><span class="built_in">cd</span> /developer</span><br><span class="line">sudo mkdir setup</span><br><span class="line">输入密码</span><br><span class="line"></span><br><span class="line">sudo mv /usr/geekkwok/developer/jdk-7u80-linux-x64.rpm /developer/setup</span><br><span class="line">输入密码</span><br><span class="line"></span><br><span class="line">sudo chmod 777 jdk-7u80-linux-x64.rpm</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装 JDK 默认路径</span></span><br><span class="line">sudo rpm -ivh jdk-7u80-linux-x64.rpm</span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> /usr/java/jdk1.7.0_80</span><br><span class="line"></span><br><span class="line"><span class="comment"># 配置环境变量</span></span><br><span class="line">sudo vim /etc/profile</span><br><span class="line"></span><br><span class="line"><span class="built_in">export</span> JAVA_HOME=/usr/java/jdk3.7.0_80</span><br><span class="line"><span class="built_in">export</span> CLASS_PATH=.:<span class="variable">$JAVA_HOME</span>/lib/dt.jar:<span class="variable">$JAVA_HOME</span>/lib/tools.jar:<span class="variable">$JAVA_HOME</span>/jre/lib/rt.jar</span><br><span class="line"></span><br><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$PATH</span>:<span class="variable">$JAVA_HOME</span>/bin:<span class="variable">$CATALINA_HOME</span>/bin:<span class="variable">$MAVEN_HOME</span>:/bin</span><br><span class="line"></span><br><span class="line">:wq! 保存退出</span><br><span class="line"></span><br><span class="line"><span class="comment"># 验证</span></span><br><span class="line">java -version</span><br></pre></td></tr></table></figure>
+<h4 id="2-Tomcat"><a href="#2-Tomcat" class="headerlink" title="2.Tomcat"></a>2.Tomcat</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 切换到指定目录</span></span><br><span class="line"><span class="built_in">cd</span> /developer</span><br><span class="line"></span><br><span class="line"><span class="comment"># 下载tomcat</span></span><br><span class="line">sudo wget http://learning.happymmall.com/tomcat/apache-tomcat-7.0.73.tar.gz</span><br><span class="line"></span><br><span class="line"><span class="comment"># 解压</span></span><br><span class="line">sudo tar -zxvf apache-tomcat-7.0.73.tar.gz</span><br><span class="line"></span><br><span class="line"><span class="comment"># 备份安装文件</span></span><br><span class="line">sudo mv apache-tomcat-7.0.73.tar.gz setup</span><br><span class="line"></span><br><span class="line"><span class="comment"># 修改 tomcat 的字符编码</span></span><br><span class="line">sudo vim apache-tomcat-7.0.73/conf/server.xml</span><br><span class="line"></span><br><span class="line">通过搜索<span class="string">"/8080"</span>找到 Connector，在最后插入 URIEncoding=<span class="string">"UTF-8"</span></span><br><span class="line"></span><br><span class="line">:wq! 保存退出</span><br><span class="line"></span><br><span class="line"><span class="comment"># 配置环境变量</span></span><br><span class="line">类似JDK(略)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动 tomcat</span></span><br><span class="line"><span class="built_in">cd</span> apache-tomcat-7.0.73/bin/</span><br><span class="line"></span><br><span class="line">sudo ./startup.sh</span><br><span class="line"></span><br><span class="line"><span class="comment"># 检验 tomcat 是否正常启动</span></span><br><span class="line">访问 http://101.132.132.212:8080/</span><br></pre></td></tr></table></figure>
+<h4 id="3-Maven"><a href="#3-Maven" class="headerlink" title="3.Maven"></a>3.Maven</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /developer</span><br><span class="line"></span><br><span class="line"><span class="comment"># 下载指定版本</span></span><br><span class="line">sudo wget http://learning.happymmall.com/maven/apache-maven-3.0.5-bin.tar.gz</span><br><span class="line"></span><br><span class="line"><span class="comment"># 解压</span></span><br><span class="line">sudo tar -zxvf apache-maven-3.0.5-bin.tar.gz</span><br><span class="line"></span><br><span class="line"><span class="comment"># 备份安装包</span></span><br><span class="line">sudo mv apache-maven-3.0.5-bin.tar.gz setup</span><br><span class="line"></span><br><span class="line"><span class="comment"># 配置环境变量</span></span><br><span class="line">类似JDK(略)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 验证maven</span></span><br><span class="line">mvn -version</span><br></pre></td></tr></table></figure>
+<h4 id="4-Vsftpd"><a href="#4-Vsftpd" class="headerlink" title="4.Vsftpd"></a>4.Vsftpd</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 直接通过源安装vsftpd</span></span><br><span class="line">sudo yum -y install vsftpd</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建目录</span></span><br><span class="line">sudo mkdir /product</span><br><span class="line"><span class="built_in">cd</span> /product</span><br><span class="line">sudo mkdir ftpfile</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建匿名用户ftpuser</span></span><br><span class="line">sudo useradd ftpuser -d /product/ftpfile -s /sbin/nologin</span><br><span class="line"></span><br><span class="line"><span class="comment"># 修改ftpfile文件夹权限</span></span><br><span class="line">sudo chown -R ftpuser.ftpuser ./fipfile/</span><br><span class="line"></span><br><span class="line"><span class="comment"># 重置ftpuser密码</span></span><br><span class="line">sudo passwd ftpuser</span><br><span class="line">输入新密码</span><br><span class="line">再次输入新密码</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建chroot_list文件</span></span><br><span class="line"><span class="built_in">cd</span> /etc/vsftpd</span><br><span class="line">sudo vim chroot_list</span><br><span class="line">输入ftpuser</span><br><span class="line">:wq! 保存退出</span><br><span class="line"></span><br><span class="line"><span class="comment"># 修改安全策略</span></span><br><span class="line">sudo vim /etc/selinux/config</span><br><span class="line">检查是否<span class="string">"SELINUX=disabled"</span>,若不是则改为disabled,并保存退出</span><br><span class="line">或者</span><br><span class="line">sudo setsebool -P ftp_home_dir 1</span><br><span class="line"></span><br><span class="line"><span class="comment"># 配置vsftpd.conf文件</span></span><br><span class="line">sudo mv vsftpd.conf vsftpd.conf.bak</span><br><span class="line">sudo wget http://learning.happymmall.com/vsftpdconfig/vsftpd.conf</span><br></pre></td></tr></table></figure>
+<h4 id="5-Nginx"><a href="#5-Nginx" class="headerlink" title="5.Nginx"></a>5.Nginx</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /developer/setup</span><br><span class="line"></span><br><span class="line"><span class="comment"># 下载Nginx安装文件</span></span><br><span class="line">sudo wget http://learning.happymmall.com/nginx/linux-nginx-1.10.2.tar.gz</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装Nginx依赖</span></span><br><span class="line">sudo yum -y install gcc zlib zlib-devel pcre-devel openssl openssl-devel</span><br><span class="line"></span><br><span class="line"><span class="comment"># 解压</span></span><br><span class="line">sudo tar -zxvf linux-nginx-1.10.2.tar.gz</span><br><span class="line"></span><br><span class="line"><span class="comment"># 编译和安装</span></span><br><span class="line"><span class="built_in">cd</span> nginx-1.10.2</span><br><span class="line">sudo ./configure</span><br><span class="line">sudo make</span><br><span class="line">sudo make install</span><br><span class="line"></span><br><span class="line"><span class="comment"># 配置nginx反向代理</span></span><br><span class="line">whereis nginx</span><br><span class="line"><span class="built_in">cd</span> /usr/<span class="built_in">local</span>/nginx</span><br><span class="line"><span class="built_in">cd</span> conf</span><br><span class="line">sudo vim nginx.conf</span><br><span class="line">在<span class="comment"># HTTPS server上面一行添加 "include vhost/*.conf"</span></span><br><span class="line">:wq! 保存退出</span><br><span class="line">sudo mkdir vhost</span><br><span class="line"><span class="built_in">cd</span> vhost</span><br><span class="line"></span><br><span class="line"><span class="comment"># 添加反向代理文件</span></span><br><span class="line">sudo wget http://learning.happymmall.com/nginx/linux_conf/vhost/admin.happymmall.com.conf</span><br><span class="line">sudo wget http://learning.happymmall.com/nginx/linux_conf/vhost/happymmall.com.conf</span><br><span class="line">sudo wget http://learning.happymmall.com/nginx/linux_conf/vhost/img.happymmall.com.conf</span><br><span class="line">sudo wget http://learning.happymmall.com/nginx/linux_conf/vhost/s.happymmall.com.conf</span><br><span class="line">sudo mv happymmall.com.conf mall.geekkwok.com.conf</span><br><span class="line">sudo mv admin.happymmall.com.conf admin.geekkwok.com.conf</span><br><span class="line">sudo mv img.happymmall.com.conf img.geekkwok.com.conf</span><br><span class="line">sudo mv s.happymmall.com.conf s.geekkwok.com.conf</span><br><span class="line">sudo vim mall.geekkwok.com.conf</span><br><span class="line">修改server_name mall.geekkwok.com www.geekkwok.com;</span><br><span class="line">保存退出</span><br><span class="line">sudo vim img.geekkwok.com.conf</span><br><span class="line">修改server_name img.geekkwok.com;</span><br><span class="line">保存退出</span><br><span class="line">sudo vim admin.geekkwok.com.conf</span><br><span class="line">修改server_name admin.geekkwok.com;</span><br><span class="line">保存退出</span><br><span class="line">sudo vim s.geekkwok.com.conf</span><br><span class="line">修改server_name s.geekkwok.com;</span><br><span class="line">保存退出</span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动并验证</span></span><br><span class="line"><span class="built_in">cd</span> /usr/<span class="built_in">local</span>/nginx/sbin</span><br><span class="line">sudo ./nginx</span><br><span class="line">或者</span><br><span class="line">sudo ./nginx -s reload</span><br><span class="line">访问：http://101.132.132.212 看是否可以访问到nginx主页</span><br></pre></td></tr></table></figure>
+<h4 id="6-文件服务器"><a href="#6-文件服务器" class="headerlink" title="6.文件服务器"></a>6.文件服务器</h4><h4 id="7-MySQL"><a href="#7-MySQL" class="headerlink" title="7.MySQL"></a>7.MySQL</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 检查是否已安装mysql</span></span><br><span class="line">sudo rpm -qa | grep mysql</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装注意事项</span></span><br><span class="line">从 CentOS 7 开始，默认安装的是 Mariadb 而不是 MySQL。所以执行 `sudo yum install mysql` 命令只是更新 Mariadb 数据库。</span><br><span class="line"></span><br><span class="line">(1) 我们先下载 repo 源：</span><br><span class="line"><span class="built_in">cd</span> /developer/setup</span><br><span class="line">sudo wget http://repo.mysql.com/mysql-community-release-el7-5.noarch.rpm</span><br><span class="line"></span><br><span class="line">(2) 安装mysql-community-release-el7-5.noarch.rpm包：</span><br><span class="line">sudo rpm -ivh mysql-community-release-el7-5.noarch.rpm</span><br><span class="line"></span><br><span class="line">(3) 安装这个包后会获得两个 MySQL 的 yum repo 源：</span><br><span class="line">/etc/yum.repos.d/mysql-community.repo 和 /etc/yum.repos.d/mysql-community-source.repo</span><br><span class="line"></span><br><span class="line">(4) 然后就可以正常安装了：</span><br><span class="line">sudo yum -y install mysql-server</span><br><span class="line"></span><br><span class="line">(5) 可通过这个命令检查是否已经安装了mysql-server</span><br><span class="line">rpm -qa | grep mysql</span><br><span class="line"></span><br><span class="line">(6) 默认配置文件 /etc/my.cnf</span><br><span class="line"></span><br><span class="line"><span class="comment"># 配置字符集</span></span><br><span class="line">sudo vim /etc/my.cnf</span><br><span class="line">在mysqld节点下配置<span class="string">"character-set-server=utf8"</span></span><br><span class="line">:wq! 保存退出</span><br><span class="line"></span><br><span class="line"><span class="comment"># 配置mysql随系统自启动</span></span><br><span class="line">sudo chkconfig mysqld on (或者 systemctl <span class="built_in">enable</span> mysqld.service)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动mysql</span></span><br><span class="line">sudo service mysqld restart</span><br><span class="line"></span><br><span class="line"><span class="comment"># MySQL内部配置</span></span><br><span class="line">(1) 登录mysql: mysql -u root</span><br><span class="line"></span><br><span class="line">(2) 修改用户配置</span><br><span class="line">    &lt;1&gt; 查看目前mysql用户</span><br><span class="line">    select user, host, password from mysql.user;</span><br><span class="line">    &lt;2&gt; 修改root密码</span><br><span class="line">    <span class="built_in">set</span> password <span class="keyword">for</span> root@localhost=password(<span class="string">'your password'</span>);</span><br><span class="line">    <span class="built_in">set</span> password <span class="keyword">for</span> root@127.0.0.1=password(<span class="string">'your password'</span>);</span><br><span class="line">    <span class="built_in">set</span> password <span class="keyword">for</span> root@izuf60qb6cir54shigf1msz=password(<span class="string">'your password'</span>);</span><br><span class="line">    <span class="built_in">set</span> password <span class="keyword">for</span> root@<span class="string">'::1'</span>=password(<span class="string">'your password'</span>);</span><br><span class="line">    &lt;3&gt; 退出mysql重新登录</span><br><span class="line">    <span class="built_in">exit</span></span><br><span class="line">    mysql -u root -p</span><br><span class="line">    输入密码</span><br><span class="line">    &lt;4&gt; 删除匿名用户</span><br><span class="line">    select user, host, password from mysql.user; <span class="comment"># 查看是否有匿名用户</span></span><br><span class="line">    delete from mysql.user <span class="built_in">where</span> user=<span class="string">''</span>; <span class="comment"># 删除匿名用户</span></span><br><span class="line">    select user, host, password from mysql.user; <span class="comment"># 再次查看</span></span><br><span class="line">    flush privileges; <span class="comment"># 刷新使以上操作生效</span></span><br><span class="line">    &lt;5&gt; 插入新用户</span><br><span class="line">    MySQL5.1版本:</span><br><span class="line">    insert into mysql.user(host, user, password) values (<span class="string">'localhost'</span>, <span class="string">'your username'</span>, password(<span class="string">'your password'</span>));</span><br><span class="line">    MySQL5.6版本:</span><br><span class="line">    GRANT USAGE ON *.* TO <span class="string">'your username'</span>@<span class="string">'localhost'</span> IDENTIFIED BY <span class="string">'your password'</span> WITH GRANT OPTION;</span><br><span class="line">    flush privileges; <span class="comment"># 刷新使新增用户操作生效</span></span><br><span class="line"></span><br><span class="line">(3) 权限配置</span><br><span class="line">目前为ALL-IN-ONE模式，所以不需要开通外网权限</span><br><span class="line"></span><br><span class="line">(4) 新建数据库</span><br><span class="line">create database `mmall` default character <span class="built_in">set</span> utf8 collate utf8_general_ci;</span><br><span class="line">show databases;</span><br><span class="line"></span><br><span class="line">(5) 授予 mmall 用户访问 mmall 数据的权限</span><br><span class="line">grant all privileges on mmall.* to mmall@localhost identified by <span class="string">'mmall'</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 命令行刷数据库脚本</span></span><br><span class="line"><span class="built_in">cd</span> /developer/setup</span><br><span class="line">sudo wget http://learning.happymmall.com/mmall.sql</span><br><span class="line"></span><br><span class="line">mysql -u root -p</span><br><span class="line">输入密码</span><br><span class="line"></span><br><span class="line">show databases;</span><br><span class="line">use mmall;</span><br><span class="line">show tables;</span><br><span class="line"></span><br><span class="line"><span class="built_in">source</span> /developer/setup/mmall.sql</span><br><span class="line">show tables;</span><br><span class="line">select * from mmall_user \G</span><br></pre></td></tr></table></figure>
+<h4 id="8-Git"><a href="#8-Git" class="headerlink" title="8.Git"></a>8.Git</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">(1) 下载安装文件</span><br><span class="line"><span class="built_in">cd</span> /developer/setup</span><br><span class="line">sudo wget http://learning.happymmall.com/git/git-v2.8.0.tar.gz</span><br><span class="line"></span><br><span class="line">(2) 安装Git依赖</span><br><span class="line">sudo yum -y install zlib-devel openssl-devel cpio expat-devel gettext-devel curl-devel perl-ExtUtils-CBuilder perl-ExtUtils- MakeMaker</span><br><span class="line"></span><br><span class="line">(3) 解压</span><br><span class="line">sudo tar -zxvf git-v2.8.0.tar.gz</span><br><span class="line"></span><br><span class="line">(4) 编译与安装</span><br><span class="line"><span class="built_in">cd</span> git-2.8.0</span><br><span class="line">sudo make prefix=/usr/<span class="built_in">local</span>/git all</span><br><span class="line">sudo make prefix=/usr/<span class="built_in">local</span>/git install</span><br><span class="line"></span><br><span class="line">(5) 配置环境变量</span><br><span class="line">sudo vim /etc/profile</span><br><span class="line">添加</span><br><span class="line"><span class="built_in">export</span> GIT_HOME=/usr/<span class="built_in">local</span>/git</span><br><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$JAVA_HOME</span>/bin:<span class="variable">$CATALINA_HOME</span>/bin:<span class="variable">$MAVEN_HOME</span>/bin:<span class="variable">$GIT_HOME</span>/bin:<span class="variable">$PATH</span></span><br><span class="line">:wq! 保存退出</span><br><span class="line"></span><br><span class="line">(6) 配置全局参数</span><br><span class="line">git config --global user.name <span class="string">"geek.kwok"</span></span><br><span class="line">git config --global user.email <span class="string">"geek.kwok@gmail.com"</span></span><br><span class="line">git config --global core.autocrlf <span class="literal">false</span></span><br><span class="line">git config --global core.quotepath off</span><br><span class="line">git config --global gui.encoding utf-8</span><br><span class="line"></span><br><span class="line">(7) SSH Key Pair 配置</span><br><span class="line">ssh-keygen -t rsa -C <span class="string">"geek.kwok@gmail.com"</span> 一路回车到底</span><br><span class="line"><span class="built_in">eval</span> `ssh-agent`</span><br><span class="line">ssh-add ~/.ssh/id_rsa</span><br><span class="line">cat ~/.ssh/id_rsa.pub</span><br><span class="line">注：若需要sudo权限，则响应的命令都需要添加对应权限</span><br><span class="line"></span><br><span class="line">(8) 远程仓库添加SSH Key</span><br><span class="line">远程仓库放在Gitee.com，所以去上面配置一下SSH Key</span><br></pre></td></tr></table></figure>
+<h4 id="9-iptables配置"><a href="#9-iptables配置" class="headerlink" title="9.iptables配置"></a>9.iptables配置</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">注意：CentOS 7 开始默认使用firewalle，而不是iptables。https://www.cnblogs.com/kreo/p/4368811.html</span><br><span class="line"></span><br><span class="line">(1) 首先安装iptables、iptables-service</span><br><span class="line"><span class="comment">#先检查是否安装了iptables</span></span><br><span class="line">service iptables status</span><br><span class="line"><span class="comment">#安装iptables</span></span><br><span class="line">yum install -y iptables</span><br><span class="line"><span class="comment">#升级iptables</span></span><br><span class="line">yum update iptables</span><br><span class="line"><span class="comment">#安装iptables-services</span></span><br><span class="line">yum install iptables-services</span><br><span class="line"></span><br><span class="line">(2) 禁用/停止自带的firewalld服务</span><br><span class="line"><span class="comment">#停止firewalld服务</span></span><br><span class="line">systemctl stop firewalld</span><br><span class="line"><span class="comment">#禁用firewalld服务</span></span><br><span class="line">systemctl mask firewalld</span><br><span class="line"></span><br><span class="line">(3) 配置iptables</span><br><span class="line"><span class="built_in">cd</span> /etc/sysconfig</span><br><span class="line"></span><br><span class="line">sudo iptables -P OUTPUT ACCEPT</span><br><span class="line"></span><br><span class="line">sudo service iptables save</span><br><span class="line"></span><br><span class="line">sudo mv iptables iptables.bak</span><br><span class="line"></span><br><span class="line">sudo wget http://learning.happymmall.com/env/iptables</span><br><span class="line"></span><br><span class="line">sudo vim iptables</span><br><span class="line"></span><br><span class="line">注释掉对应端口 3306 5005 8080</span><br><span class="line"></span><br><span class="line">sudo service iptables restart</span><br></pre></td></tr></table></figure>
+<h3 id="五、自动化发布脚本编写"><a href="#五、自动化发布脚本编写" class="headerlink" title="五、自动化发布脚本编写"></a>五、自动化发布脚本编写</h3><p>cd /developer/<br>sudo wget <a href="http://learning.happymmall.com/deploy/deploy.sh" target="_blank" rel="noopener">http://learning.happymmall.com/deploy/deploy.sh</a><br>sudo vim deploy.sh</p>
+<p>sudo mkdir git-repository<br>cd git-repository<br>sudo git clone <a href="https://gitee.com/GeekKwok/mmall2.git" target="_blank" rel="noopener">https://gitee.com/GeekKwok/mmall2.git</a></p>
+<p>sudo chown -R geekkwok /developer/<br>sudo chmod u+w -R /developer/<br>sudo chmod u+r -R /developer/<br>sudo chmod u+x -R /developer/</p>
+<p>cd ..<br>sudo vim deploy.sh</p>
+<h3 id="线上验证"><a href="#线上验证" class="headerlink" title="线上验证"></a>线上验证</h3>
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Linux/" rel="tag"># Linux</a>
+          
+            <a href="/tags/云服务器部署/" rel="tag"># 云服务器部署</a>
+          
+            <a href="/tags/自动化发布/" rel="tag"># 自动化发布</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/01/28/20190128.Git安装与配置/" rel="next" title="Git安装与配置">
+                <i class="fa fa-chevron-left"></i> Git安装与配置
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/geekkwok-avatar.jpeg" alt="Geek.Kwok">
+            
+              <p class="site-author-name" itemprop="name">Geek.Kwok</p>
+              <p class="site-description motion-element" itemprop="description">Keep learning and create wonderful life!</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">13</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">2</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">14</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/GeekKwok" title="GitHub &rarr; https://github.com/GeekKwok" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:geek.kwok@gmail.com" title="E-Mail &rarr; mailto:geek.kwok@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、云服务器申请与配置"><span class="nav-number">1.</span> <span class="nav-text">一、云服务器申请与配置</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-申请云服务器"><span class="nav-number">1.1.</span> <span class="nav-text">1.申请云服务器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-云服务器配置"><span class="nav-number">1.2.</span> <span class="nav-text">2.云服务器配置</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、域名申请、备案与配置"><span class="nav-number">2.</span> <span class="nav-text">二、域名申请、备案与配置</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-域名申请"><span class="nav-number">2.1.</span> <span class="nav-text">1.域名申请</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-域名备案"><span class="nav-number">2.2.</span> <span class="nav-text">2.域名备案</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-域名绑定配置"><span class="nav-number">2.3.</span> <span class="nav-text">3.域名绑定配置</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、云服务器源配置"><span class="nav-number">3.</span> <span class="nav-text">三、云服务器源配置</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-登录-ECS"><span class="nav-number">3.1.</span> <span class="nav-text">1.登录 ECS</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-备份原源"><span class="nav-number">3.2.</span> <span class="nav-text">2.备份原源</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-下载新源"><span class="nav-number">3.3.</span> <span class="nav-text">3.下载新源</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-运行缓存"><span class="nav-number">3.4.</span> <span class="nav-text">4.运行缓存</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四、线上环境配置"><span class="nav-number">4.</span> <span class="nav-text">四、线上环境配置</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#0-创建带有sudo权限的新用户"><span class="nav-number">4.1.</span> <span class="nav-text">0.创建带有sudo权限的新用户</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-JDK"><span class="nav-number">4.2.</span> <span class="nav-text">1.JDK</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-Tomcat"><span class="nav-number">4.3.</span> <span class="nav-text">2.Tomcat</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-Maven"><span class="nav-number">4.4.</span> <span class="nav-text">3.Maven</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-Vsftpd"><span class="nav-number">4.5.</span> <span class="nav-text">4.Vsftpd</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-Nginx"><span class="nav-number">4.6.</span> <span class="nav-text">5.Nginx</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-文件服务器"><span class="nav-number">4.7.</span> <span class="nav-text">6.文件服务器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-MySQL"><span class="nav-number">4.8.</span> <span class="nav-text">7.MySQL</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-Git"><span class="nav-number">4.9.</span> <span class="nav-text">8.Git</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-iptables配置"><span class="nav-number">4.10.</span> <span class="nav-text">9.iptables配置</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#五、自动化发布脚本编写"><span class="nav-number">5.</span> <span class="nav-text">五、自动化发布脚本编写</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#线上验证"><span class="nav-number">6.</span> <span class="nav-text">线上验证</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Geek.Kwok</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v6.7.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=6.7.0"></script>
+
+  <script src="/js/src/motion.js?v=6.7.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/schemes/muse.js?v=6.7.0"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=6.7.0"></script>
+<script src="/js/src/post-details.js?v=6.7.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=6.7.0"></script>
+
+
+
+  
+
+
+  
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

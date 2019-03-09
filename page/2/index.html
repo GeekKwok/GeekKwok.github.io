@@ -328,6 +328,195 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.geekkwok.com/2019/01/19/20190119.Mac下Parallels安装CentOS虚拟机后开启SSH连接/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Geek.Kwok">
+      <meta itemprop="description" content="Keep learning and create wonderful life!">
+      <meta itemprop="image" content="/images/geekkwok-avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Geek.Kwok Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/01/19/20190119.Mac下Parallels安装CentOS虚拟机后开启SSH连接/" class="post-title-link" itemprop="url">Mac下Parallels安装CentOS虚拟机后开启SSH连接</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-01-19 00:30:00" itemprop="dateCreated datePublished" datetime="2019-01-19T00:30:00+08:00">2019-01-19</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-03-01 20:50:48" itemprop="dateModified" datetime="2019-03-01T20:50:48+08:00">2019-03-01</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Development/" itemprop="url" rel="index"><span itemprop="name">Development</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;在Mac系统中，在虚拟机Parallels下，安装了CentOS7系统，现在想通过Mac本地ssh工具连接虚拟机中的CentOS7，则需要开启SSH连接，操作步骤如下：</p>
+<ol>
+<li><p>确保CentOS7安装了openssh-server</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">查看是否已安装：</span><br><span class="line">yum list installed | grep openssh-server</span><br><span class="line"></span><br><span class="line">安装openssh-server：</span><br><span class="line">yum install openssh-server</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>找到sshd服务配置文件/etc/ssh/sshd_config并进行配置</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1. 打开监听端口22：Port 22</span><br><span class="line">2. 开启允许远程登录：PermitRootLogin yes</span><br><span class="line">3. 开启使用用户名密码来作为连接验证：PasswordAuthentication yes</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>开启sshd服务并设置为随系统自启动</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1. 开启服务：sudo service sshd start</span><br><span class="line">2. 检查服务是否已开启：ps -e | grep sshd 或者 netstat -an | grep 22</span><br><span class="line">3. 将sshd服务添加至自启动列表：systemctl <span class="built_in">enable</span> sshd</span><br><span class="line">4. 检查是否开启了sshd服务自启动：systemctl list-unit-files | grep sshd</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>通过ifconfig找出虚拟机的IP地址（例如eth0的inet：10.211.55.4）</p>
+</li>
+<li><p>在Mac本地用ssh工具连接虚拟机</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ssh username@10.211.55.4</span><br><span class="line">输入密码即可进入系统</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://blog.geekkwok.com/2019/01/18/20190118.intellij-idea-keymap/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -907,7 +1096,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">12</span>
+                    <span class="site-state-item-count">13</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -961,7 +1150,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">12</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">14</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
